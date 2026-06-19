@@ -4,7 +4,10 @@
  */
 if (!defined('AARAMBH_INIT')) exit;
 
-define('JWT_SECRET', getenv('JWT_SECRET') ?: 'aarambh_super_secret_key_2026_!@#');
+define('JWT_SECRET', getenv('JWT_SECRET'));
+if (empty(JWT_SECRET)) {
+    die('Critical Error: JWT_SECRET is not set in the environment variables.');
+}
 define('JWT_ACCESS_EXP', 900); // 15 minutes
 define('JWT_REFRESH_EXP', 604800); // 7 days
 
@@ -35,13 +38,10 @@ function verify_jwt($jwt, $secret = JWT_SECRET) {
     $tokenParts = explode('.', $jwt);
     if (count($tokenParts) != 3) return false;
 
-    $header = base64url_decode($tokenParts[0]);
     $payload = base64url_decode($tokenParts[1]);
     $signature_provided = $tokenParts[2];
 
-    $base64UrlHeader = base64url_encode($header);
-    $base64UrlPayload = base64url_encode($payload);
-    $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, $secret, true);
+    $signature = hash_hmac('sha256', $tokenParts[0] . "." . $tokenParts[1], $secret, true);
     $base64UrlSignature = base64url_encode($signature);
 
     if (hash_equals($base64UrlSignature, $signature_provided)) {

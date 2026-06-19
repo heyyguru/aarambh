@@ -126,6 +126,7 @@ $todayVisitStats = $todayVisitStmt->fetch();
                     $cCall = $_GET['call_status'] ?? '';
                 ?>
                 <a href="index.php" class="<?php echo ($cStatus === '' && $cCall === '') ? 'active' : ''; ?>"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="visitors.php"><i data-lucide="users"></i> Visitors</a>
                 <a href="index.php?status=lead" class="<?php echo ($cStatus === 'lead') ? 'active' : ''; ?>"><i data-lucide="target"></i> Leads</a>
                 <a href="index.php?status=paid" class="<?php echo ($cStatus === 'paid') ? 'active' : ''; ?>"><i data-lucide="credit-card"></i> Paid Students</a>
                 <a href="index.php?call_status=not_called" class="<?php echo ($cCall === 'not_called') ? 'active' : ''; ?>"><i data-lucide="phone-missed"></i> Not Called</a>
