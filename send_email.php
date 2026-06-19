@@ -21,19 +21,19 @@ function sendConfirmationEmail($student, $paymentId) {
 
     $htmlBody = getEmailTemplate($studentName, $studentClass, $phone, $paymentId);
 
-    // Try PHP mail() first (works on most shared hosting)
-    $headers = [];
-    $headers[] = 'MIME-Version: 1.0';
-    $headers[] = 'Content-type: text/html; charset=UTF-8';
-    $headers[] = 'From: HeyyGuru <' . SMTP_FROM_EMAIL . '>';
-    $headers[] = 'Reply-To: ' . SUPPORT_EMAIL;
-    $headers[] = 'X-Mailer: PHP/' . phpversion();
+    // Try SMTP first (most reliable)
+    $sent = sendViaSMTP($to, $subject, $htmlBody);
 
-    $sent = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
-
+    // Fallback to PHP mail() if SMTP fails
     if (!$sent) {
-        // Try SMTP if mail() fails (requires PHPMailer)
-        $sent = sendViaSMTP($to, $subject, $htmlBody);
+        $headers = [];
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=UTF-8';
+        $headers[] = 'From: HeyyGuru <' . SMTP_FROM_EMAIL . '>';
+        $headers[] = 'Reply-To: ' . SUPPORT_EMAIL;
+        $headers[] = 'X-Mailer: PHP/' . phpversion();
+
+        $sent = @mail($to, $subject, $htmlBody, implode("\r\n", $headers));
     }
 
     return $sent;
