@@ -1,0 +1,99 @@
+<?php
+/**
+ * Submit Lead — AJAX Endpoint
+ * Saves student registration data to database
+ */
+define('AARAMBH_INIT', true);
+require_once __DIR__ . '/config.php';
+
+header('Content-Type: application/json');
+
+// Only POST allowed
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    jsonResponse(['success' => false, 'message' => 'Invalid request method.'], 405);
+}
+
+// Get & sanitize input
+$name = sanitize($_POST['student_name'] ?? '');
+$email = sanitize($_POST['email'] ?? '');
+$phone = sanitize($_POST['phone'] ?? '');
+$studentClass = sanitize($_POST['student_class'] ?? '');
+$city = sanitize($_POST['city'] ?? '');
+$utmSource = sanitize($_POST['utm_source'] ?? '');
+$utmMedium = sanitize($_POST['utm_medium'] ?? '');
+$utmCampaign = sanitize($_POST['utm_campaign'] ?? '');
+$utmContent = sanitize($_POST['utm_content'] ?? '');
+
+// Validate required fields
+if (empty($name) || strlen($name) < 2) {
+    jsonResponse(['success' => false, 'message' => 'Please enter a valid name.'], 400);
+}
+
+if (!isValidEmail($email)) {
+    jsonResponse(['success' => false, 'message' => 'Please enter a valid email address.'], 400);
+}
+
+if (!isValidPhone($phone)) {
+    jsonResponse(['success' => false, 'message' => 'Please enter a valid 10-digit phone number.'], 400);
+}
+
+if (empty($studentClass)) {
+    jsonResponse(['success' => false, 'message' => 'Please select a class.'], 400);
+}
+
+try {
+    $db = getDB();
+
+    // Check if phone already exists
+    $stmt = $db->prepare("SELECT id, status FROM students WHERE phone = ?");
+    $stmt->execute([$phone]);
+    $existing = $stmt->fetch();
+
+    if ($existing) {
+        // If already paid, inform user
+        if ($existing['status'] === 'paid' || $existing['status'] === 'enrolled') {
+            jsonResponse(['success' => false, 'message' => 'This phone number is already enrolled! Check your email for class details.'], 400);
+        }
+
+        // Update existing lead
+        $stmt = $db->prepare("UPDATE students SET name = ?, email = ?, student_class = ?, city = ?, utm_source = ?, utm_medium = ?, utm_campaign = ?, utm_content = ?, ip_address = ?, user_agent = ?, updated_at = NOW() WHERE id = ?");
+        $stmt->execute([
+            $name, $email, $studentClass, $city,
+            $utmSource, $utmMedium, $utmCampaign, $utmContent,
+            getClientIP(), $_SERVER['HTTP_USER_AGENT'] ?? '',
+            $existing['id']
+        ]);
+
+        jsonResponse([
+            'success' => true,
+            'student_id' => $existing['id'],
+            'message' => 'Details updated. Proceeding to payment.'
+        ]);
+    }
+
+    // Insert new lead
+    $stmt = $db->prepare("INSERT INTO students (name, email, phone, student_class, city, status, utm_source, utm_medium, utm_campaign, utm_content, ip_address, user_agent) VALUES (?, ?, ?, ?, ?, 'lead', ?, ?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $name, $email, $phone, $studentClass, $city,
+        $utmSource, $utmMedium, $utmCampaign, $utmContent,
+        getClientIP(), $_SERVER['HTTP_USER_AGENT'] ?? ''
+    ]);
+
+    $studentId = $db->lastInsertId();
+
+    jsonResponse([
+        'success' => true,
+        'student_id' => $studentId,
+        'message' => 'Registration successful. Proceeding to payment.'
+    ]);
+
+} catch (PDOException $e) {
+    error_log("Submit lead error: " . $e->getMessage());
+
+    // Handle duplicate email gracefully
+    if ($e->getCode() == 23000) {
+        jsonResponse(['success' => false, 'message' => 'This phone number is already registered. Please use a different number or contact support.'], 400);
+    }
+
+    jsonResponse(['success' => false, 'message' => 'Server error. Please try again later.'], 500);
+}

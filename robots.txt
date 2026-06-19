@@ -1,0 +1,17 @@
+# Robots.txt for aarambh.heyyguru.in
+User-agent: *
+Allow: /
+
+# Block admin panel from indexing
+Disallow: /admin/
+Disallow: /config.php
+Disallow: /db.sql
+Disallow: /submit_lead.php
+Disallow: /create_order.php
+Disallow: /verify_payment.php
+Disallow: /send_email.php
+Disallow: /track_visit.php
+Disallow: /get_count.php
+
+# Sitemap
+Sitemap: https://aarambh.heyyguru.in/sitemap.xml
