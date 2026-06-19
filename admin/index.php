@@ -121,30 +121,42 @@ $todayVisitStats = $todayVisitStmt->fetch();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="admin.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="admin-layout">
         <!-- Sidebar -->
-        <aside class="sidebar">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-logo">
-                <h2>📊 Aarambh Admin</h2>
+                <h2><i data-lucide="bar-chart-2"></i> Aarambh Admin</h2>
+                <button class="close-sidebar" id="closeSidebar"><i data-lucide="x"></i></button>
             </div>
             <nav class="sidebar-nav">
-                <a href="index.php" class="active">📋 Dashboard</a>
-                <a href="index.php?status=lead">🎯 Leads</a>
-                <a href="index.php?status=paid">💳 Paid Students</a>
-                <a href="index.php?call_status=not_called">📞 Not Called</a>
-                <a href="index.php?call_status=follow_up">🔄 Follow Up</a>
-                <a href="export.php">📥 Export CSV</a>
-                <a href="?logout=1" class="logout">🚪 Logout</a>
+                <?php
+                    $cStatus = $_GET['status'] ?? '';
+                    $cCall = $_GET['call_status'] ?? '';
+                ?>
+                <a href="index.php" class="<?php echo ($cStatus === '' && $cCall === '') ? 'active' : ''; ?>"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                <a href="index.php?status=lead" class="<?php echo ($cStatus === 'lead') ? 'active' : ''; ?>"><i data-lucide="target"></i> Leads</a>
+                <a href="index.php?status=paid" class="<?php echo ($cStatus === 'paid') ? 'active' : ''; ?>"><i data-lucide="credit-card"></i> Paid Students</a>
+                <a href="index.php?call_status=not_called" class="<?php echo ($cCall === 'not_called') ? 'active' : ''; ?>"><i data-lucide="phone-missed"></i> Not Called</a>
+                <a href="index.php?call_status=follow_up" class="<?php echo ($cCall === 'follow_up') ? 'active' : ''; ?>"><i data-lucide="refresh-cw"></i> Follow Up</a>
+                <a href="export.php"><i data-lucide="download"></i> Export CSV</a>
+                <a href="?logout=1" class="logout"><i data-lucide="log-out"></i> Logout</a>
             </nav>
         </aside>
 
         <!-- Main Content -->
         <main class="admin-main">
             <header class="admin-header">
-                <h1>Dashboard</h1>
-                <span>Welcome, <?php echo sanitize($_SESSION['admin_username']); ?></span>
+                <div class="header-left">
+                    <button class="mobile-toggle" id="mobileToggle">
+                        <i data-lucide="menu"></i>
+                    </button>
+                    <h1>Dashboard</h1>
+                </div>
+                <span class="user-greeting">Welcome, <?php echo sanitize($_SESSION['admin_username']); ?></span>
             </header>
 
             <!-- Stats Grid -->
@@ -202,8 +214,8 @@ $todayVisitStats = $todayVisitStmt->fetch();
                         <option value="converted" <?php echo $callFilter === 'converted' ? 'selected' : ''; ?>>Converted</option>
                         <option value="not_interested" <?php echo $callFilter === 'not_interested' ? 'selected' : ''; ?>>Not Interested</option>
                     </select>
-                    <button type="submit" class="btn btn-primary btn-sm">Filter</button>
-                    <a href="index.php" class="btn btn-outline btn-sm">Reset</a>
+                    <button type="submit" class="btn btn-primary btn-sm"><i data-lucide="filter"></i> Filter</button>
+                    <a href="index.php" class="btn btn-outline btn-sm"><i data-lucide="x-circle"></i> Reset</a>
                 </form>
             </div>
 
@@ -211,7 +223,7 @@ $todayVisitStats = $todayVisitStmt->fetch();
             <div class="table-container">
                 <div class="table-header">
                     <h3>Students (<?php echo $totalStudents; ?> total)</h3>
-                    <a href="export.php?<?php echo http_build_query($_GET); ?>" class="btn btn-sm btn-outline">📥 Export CSV</a>
+                    <a href="export.php?<?php echo http_build_query($_GET); ?>" class="btn btn-sm btn-outline"><i data-lucide="download"></i> Export CSV</a>
                 </div>
                 <div class="table-scroll">
                     <table class="data-table">
@@ -225,7 +237,8 @@ $todayVisitStats = $todayVisitStmt->fetch();
                                 <th>City</th>
                                 <th>Status</th>
                                 <th>Call Status</th>
-                                <th>Source</th>
+                                <th>IP Address</th>
+                                <th>Source/UTM</th>
                                 <th>Date</th>
                                 <th>Actions</th>
                             </tr>
@@ -240,7 +253,7 @@ $todayVisitStats = $todayVisitStmt->fetch();
                                     <td><strong><?php echo sanitize($s['name']); ?></strong></td>
                                     <td>
                                         <a href="tel:+91<?php echo $s['phone']; ?>" class="phone-link">
-                                            📞 <?php echo $s['phone']; ?>
+                                            <i data-lucide="phone" style="width:14px;height:14px;"></i> <?php echo $s['phone']; ?>
                                         </a>
                                     </td>
                                     <td><a href="mailto:<?php echo $s['email']; ?>"><?php echo sanitize($s['email']); ?></a></td>
@@ -256,11 +269,18 @@ $todayVisitStats = $todayVisitStmt->fetch();
                                             <?php echo ucfirst(str_replace('_', ' ', $s['call_status'])); ?>
                                         </span>
                                     </td>
-                                    <td><?php echo sanitize($s['utm_source'] ?: '-'); ?></td>
+                                    <td><code style="font-size:0.8rem;color:#8890B0;"><?php echo sanitize($s['ip_address'] ?: '-'); ?></code></td>
+                                    <td>
+                                        <?php 
+                                            $utmStr = sanitize($s['utm_source'] ?: '');
+                                            if (!empty($s['utm_campaign'])) $utmStr .= ' / ' . sanitize($s['utm_campaign']);
+                                            echo $utmStr ?: '-';
+                                        ?>
+                                    </td>
                                     <td><?php echo date('d M, H:i', strtotime($s['created_at'])); ?></td>
                                     <td>
-                                        <button class="btn btn-sm btn-outline" onclick="openUpdateModal(<?php echo $s['id']; ?>, '<?php echo $s['call_status']; ?>', '<?php echo addslashes($s['notes'] ?? ''); ?>')">
-                                            ✏️ Update
+                                        <button class="btn btn-sm btn-outline action-btn" onclick="openUpdateModal(<?php echo $s['id']; ?>, '<?php echo $s['call_status']; ?>', '<?php echo addslashes($s['notes'] ?? ''); ?>')">
+                                            <i data-lucide="edit-3"></i> Update
                                         </button>
                                     </td>
                                 </tr>
@@ -315,6 +335,10 @@ $todayVisitStats = $todayVisitStmt->fetch();
     </div>
 
     <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Modal Logic
         function openUpdateModal(id, callStatus, notes) {
             document.getElementById('modal-student-id').value = id;
             document.getElementById('modal-call-status').value = callStatus;
@@ -327,6 +351,21 @@ $todayVisitStats = $todayVisitStmt->fetch();
         document.getElementById('updateModal').addEventListener('click', function(e) {
             if (e.target === this) closeModal();
         });
+
+        // Mobile Sidebar Logic
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const closeSidebar = document.getElementById('closeSidebar');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        mobileToggle.addEventListener('click', toggleSidebar);
+        closeSidebar.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
     </script>
 </body>
 </html>

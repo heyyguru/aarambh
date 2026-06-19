@@ -104,6 +104,33 @@ body {
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
     color: var(--text-white);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.close-sidebar {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-white);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.sidebar-overlay.open {
+    display: block;
+    opacity: 1;
 }
 
 .sidebar-nav {
@@ -112,12 +139,21 @@ body {
 }
 
 .sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
     padding: 0.7rem 1.5rem;
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.2s;
     border-left: 3px solid transparent;
+}
+
+.sidebar-nav a svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
 }
 
 .sidebar-nav a:hover,
@@ -153,12 +189,32 @@ body {
     border-bottom: 1px solid #E5E7EB;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.mobile-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s;
+}
+.mobile-toggle:hover {
+    background: #E5E7EB;
+}
+
 .admin-header h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 1.5rem;
 }
 
-.admin-header span {
+.user-greeting {
     color: var(--text-muted);
     font-size: 0.9rem;
 }
@@ -357,7 +413,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     padding: 0.6rem 1.2rem;
     border-radius: var(--radius-sm);
     font-weight: 600;
@@ -366,6 +422,11 @@ body {
     transition: all 0.2s;
     text-decoration: none;
     border: none;
+}
+
+.btn svg {
+    width: 16px;
+    height: 16px;
 }
 
 .btn-primary {
@@ -470,6 +531,30 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 100;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .sidebar-logo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .close-sidebar {
+        display: block;
+    }
+    
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .user-greeting {
         display: none;
     }
 
