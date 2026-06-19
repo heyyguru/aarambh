@@ -4,15 +4,9 @@
  */
 define('AARAMBH_INIT', true);
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/auth.php';
 
-session_name(ADMIN_SESSION_NAME);
-session_start();
-
-// Auth check
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header('Location: login.php');
-    exit;
-}
+require_admin_auth();
 
 $db = getDB();
 

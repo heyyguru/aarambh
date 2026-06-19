@@ -998,8 +998,11 @@ try {
 
     <!-- Razorpay Checkout Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    
-    <!-- Main Script -->
+    <script>
+        window.AARAMBH_CONFIG = {
+            razorpayKeyId: '<?php echo addslashes(RAZORPAY_KEY_ID); ?>'
+        };
+    </script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

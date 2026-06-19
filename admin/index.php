@@ -4,26 +4,14 @@
  */
 define('AARAMBH_INIT', true);
 require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/auth.php';
 
-session_name(ADMIN_SESSION_NAME);
-session_start();
-
-// Auth check
-if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    header('Location: login.php');
-    exit;
-}
-
-// Session timeout
-if (time() - ($_SESSION['admin_login_time'] ?? 0) > ADMIN_SESSION_TIMEOUT) {
-    session_destroy();
-    header('Location: login.php?expired=1');
-    exit;
-}
+$admin_username = require_admin_auth();
 
 // Logout
 if (isset($_GET['logout'])) {
-    session_destroy();
+    setcookie('admin_access_token', '', time() - 3600, '/');
+    setcookie('admin_refresh_token', '', time() - 3600, '/');
     header('Location: login.php');
     exit;
 }
@@ -156,7 +144,7 @@ $todayVisitStats = $todayVisitStmt->fetch();
                     </button>
                     <h1>Dashboard</h1>
                 </div>
-                <span class="user-greeting">Welcome, <?php echo sanitize($_SESSION['admin_username']); ?></span>
+                <span class="user-greeting">Welcome, <?php echo sanitize($admin_username); ?></span>
             </header>
 
             <!-- Stats Grid -->

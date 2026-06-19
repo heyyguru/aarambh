@@ -12,7 +12,7 @@
     // Configuration
     // ---------------------------------------------------
     const CONFIG = {
-        razorpayKeyId: 'rzp_live_XXXXXXXXXXXXXXX', // CHANGE THIS
+        razorpayKeyId: window.AARAMBH_CONFIG ? window.AARAMBH_CONFIG.razorpayKeyId : '',
         courseName: 'AARAMBH Course',
         coursePrice: 1900, // in paise
         coursePriceDisplay: '₹19',

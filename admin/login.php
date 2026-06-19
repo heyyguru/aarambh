@@ -5,11 +5,11 @@
 define('AARAMBH_INIT', true);
 require_once __DIR__ . '/../config.php';
 
-session_name(ADMIN_SESSION_NAME);
-session_start();
+require_once __DIR__ . '/auth.php';
 
 // If already logged in, redirect
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
+$accessToken = $_COOKIE['admin_access_token'] ?? '';
+if ($accessToken && verify_jwt($accessToken)) {
     header('Location: index.php');
     exit;
 }
@@ -30,9 +30,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $admin = $stmt->fetch();
 
             if ($admin && password_verify($password, $admin['password_hash'])) {
-                $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_username'] = $username;
-                $_SESSION['admin_login_time'] = time();
+                // Issue JWT Tokens
+                $accessJwt = create_jwt([
+                    'type' => 'access',
+                    'username' => $username,
+                    'exp' => time() + JWT_ACCESS_EXP
+                ]);
+                $refreshJwt = create_jwt([
+                    'type' => 'refresh',
+                    'username' => $username,
+                    'exp' => time() + JWT_REFRESH_EXP
+                ]);
+
+                // Set HttpOnly Cookies
+                setcookie('admin_access_token', $accessJwt, time() + JWT_ACCESS_EXP, '/', '', false, true);
+                setcookie('admin_refresh_token', $refreshJwt, time() + JWT_REFRESH_EXP, '/', '', false, true);
+
                 header('Location: index.php');
                 exit;
             } else {

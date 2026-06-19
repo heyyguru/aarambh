@@ -40,43 +40,75 @@ function sendConfirmationEmail($student, $paymentId) {
 }
 
 /**
- * Try sending via SMTP (PHPMailer)
+ * Send via SMTP using native PHP sockets (No dependencies required)
  */
 function sendViaSMTP($to, $subject, $htmlBody) {
-    // Check if PHPMailer is available
-    $phpmailerPath = __DIR__ . '/vendor/autoload.php';
-    if (!file_exists($phpmailerPath)) {
-        error_log("PHPMailer not installed. Run: composer require phpmailer/phpmailer");
+    $host = SMTP_HOST;
+    $port = SMTP_PORT;
+    $user = SMTP_USERNAME;
+    $pass = SMTP_PASSWORD;
+    $fromEmail = SMTP_FROM_EMAIL;
+    $fromName = SMTP_FROM_NAME;
+
+    $context = stream_context_create([
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ]
+    ]);
+
+    $socket = stream_socket_client("tcp://$host:$port", $errno, $errstr, 10, STREAM_CLIENT_CONNECT, $context);
+    if (!$socket) {
+        error_log("SMTP Error: $errstr ($errno)");
         return false;
     }
 
-    require_once $phpmailerPath;
+    function read_resp($socket) {
+        $resp = "";
+        while ($str = fgets($socket, 515)) {
+            $resp .= $str;
+            if (substr($str, 3, 1) == " ") break;
+        }
+        return $resp;
+    }
+    function send_cmd($socket, $cmd) {
+        fwrite($socket, $cmd . "\r\n");
+        return read_resp($socket);
+    }
 
-    try {
-        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-        $mail->isSMTP();
-        $mail->Host = SMTP_HOST;
-        $mail->SMTPAuth = true;
-        $mail->Username = SMTP_USERNAME;
-        $mail->Password = SMTP_PASSWORD;
-        $mail->SMTPSecure = SMTP_ENCRYPTION;
-        $mail->Port = SMTP_PORT;
-
-        $mail->setFrom(SMTP_FROM_EMAIL, SMTP_FROM_NAME);
-        $mail->addAddress($to);
-        $mail->addReplyTo(SUPPORT_EMAIL, 'HeyyGuru Support');
-
-        $mail->isHTML(true);
-        $mail->Subject = $subject;
-        $mail->Body = $htmlBody;
-        $mail->AltBody = strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $htmlBody));
-
-        $mail->send();
-        return true;
-    } catch (Exception $e) {
-        error_log("SMTP Email error: " . $e->getMessage());
+    read_resp($socket); // read banner
+    send_cmd($socket, "EHLO localhost");
+    send_cmd($socket, "STARTTLS");
+    stream_socket_enable_crypto($socket, true, STREAM_CRYPTO_METHOD_TLS_CLIENT);
+    send_cmd($socket, "EHLO localhost");
+    send_cmd($socket, "AUTH LOGIN");
+    send_cmd($socket, base64_encode($user));
+    $authResp = send_cmd($socket, base64_encode($pass));
+    
+    if (strpos($authResp, "235") === false) {
+        error_log("SMTP Auth Failed: " . $authResp);
+        fclose($socket);
         return false;
     }
+
+    send_cmd($socket, "MAIL FROM:<$fromEmail>");
+    send_cmd($socket, "RCPT TO:<$to>");
+    send_cmd($socket, "DATA");
+
+    $headers = [
+        "From: $fromName <$fromEmail>",
+        "To: $to",
+        "Subject: =?UTF-8?B?" . base64_encode($subject) . "?=",
+        "MIME-Version: 1.0",
+        "Content-Type: text/html; charset=UTF-8"
+    ];
+
+    $msg = implode("\r\n", $headers) . "\r\n\r\n" . $htmlBody . "\r\n.";
+    $sendResp = send_cmd($socket, $msg);
+    send_cmd($socket, "QUIT");
+    fclose($socket);
+
+    return strpos($sendResp, "250") !== false;
 }
 
 /**
