@@ -1,4 +1,5 @@
 <?php
+define('AARAMBH_INIT', true);
 require_once __DIR__ . '/config.php';
 
 header('Content-Type: application/json');
@@ -8,16 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$name = trim($_POST['student_name'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$phone = trim($_POST['phone'] ?? '');
-$class = trim($_POST['student_class'] ?? '');
-$session_id = session_id();
+if (!RateLimiter::checkLimit('lead_creation', 5, 3600)) {
+    jsonResponse(['success' => false, 'message' => 'Too many registration attempts. Please try again later.'], 429);
+}
 
-// We need at least phone or email to track usefully
-if (empty($phone) && empty($email)) {
-    echo json_encode(['success' => false, 'message' => 'No contact info']);
-    exit;
+$name = InputValidator::validateName($_POST['student_name'] ?? '');
+$email = InputValidator::validateEmail($_POST['email'] ?? '');
+$phone = InputValidator::validatePhone($_POST['phone'] ?? '');
+$class = InputValidator::validateAlphaNumSpace($_POST['student_class'] ?? '', 50);
+
+if (!$name || !$email || !$phone || !$class) {
+    jsonResponse(['success' => false, 'message' => 'Invalid data format. Please use valid name, email and phone.'], 400);
 }
 
 try {

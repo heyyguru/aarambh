@@ -13,40 +13,31 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(['success' => false, 'message' => 'Invalid request method.'], 405);
 }
 
+if (!RateLimiter::checkLimit('lead_creation', 5, 3600)) {
+    jsonResponse(['success' => false, 'message' => 'Too many registration attempts. Please try again later.'], 429);
+}
+
 // Get & sanitize input
-$name = sanitize($_POST['student_name'] ?? '');
-$email = sanitize($_POST['email'] ?? '');
-$phone = sanitize($_POST['phone'] ?? '');
-$studentClass = sanitize($_POST['student_class'] ?? '');
-$city = sanitize($_POST['city'] ?? '');
-$utmSource = sanitize($_POST['utm_source'] ?? '');
-$utmMedium = sanitize($_POST['utm_medium'] ?? '');
-$utmCampaign = sanitize($_POST['utm_campaign'] ?? '');
-$utmContent = sanitize($_POST['utm_content'] ?? '');
+$name = InputValidator::validateName($_POST['student_name'] ?? '');
+$email = InputValidator::validateEmail($_POST['email'] ?? '');
+$phone = InputValidator::validatePhone($_POST['phone'] ?? '');
+$studentClass = InputValidator::validateAlphaNumSpace($_POST['student_class'] ?? '', 50);
+$city = InputValidator::validateAlphaNumSpace($_POST['city'] ?? '', 100);
+$utmSource = InputValidator::validateAlphaNumSpace($_POST['utm_source'] ?? '', 100);
+$utmMedium = InputValidator::validateAlphaNumSpace($_POST['utm_medium'] ?? '', 100);
+$utmCampaign = InputValidator::validateAlphaNumSpace($_POST['utm_campaign'] ?? '', 100);
+$utmContent = InputValidator::validateAlphaNumSpace($_POST['utm_content'] ?? '', 100);
 
-// Validate required fields
-if (empty($name) || strlen($name) < 2) {
-    jsonResponse(['success' => false, 'message' => 'Please enter a valid name.'], 400);
-}
-
-if (!isValidEmail($email)) {
-    jsonResponse(['success' => false, 'message' => 'Please enter a valid email address.'], 400);
-}
-
-if (!isValidPhone($phone)) {
-    jsonResponse(['success' => false, 'message' => 'Please enter a valid 10-digit phone number.'], 400);
-}
-
-if (empty($studentClass)) {
-    jsonResponse(['success' => false, 'message' => 'Please select a class.'], 400);
+if (!$name || !$email || !$phone || !$studentClass) {
+    jsonResponse(['success' => false, 'message' => 'Invalid or missing required fields. Please ensure your name only contains letters and your phone is 10 digits.'], 400);
 }
 
 try {
     $db = getDB();
 
-    // Check if phone already exists
-    $stmt = $db->prepare("SELECT id, status FROM students WHERE phone = ?");
-    $stmt->execute([$phone]);
+    // Check if phone or email already registered
+    $stmt = $db->prepare("SELECT id, status FROM students WHERE phone = ? OR email = ?");
+    $stmt->execute([$phone, $email]);
     $existing = $stmt->fetch();
 
     if ($existing) {

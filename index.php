@@ -9,17 +9,22 @@ define('AARAMBH_INIT', true);
 require_once __DIR__ . '/config.php';
 
 // Track page visit
+if (!RateLimiter::checkLimit('page_views', 60, 60)) {
+    http_response_code(429);
+    die("Too Many Requests. Please slow down.");
+}
+
 try {
     $db = getDB();
     $stmt = $db->prepare("INSERT INTO page_visits (ip_address, user_agent, referrer, page_url, utm_source, utm_medium, utm_campaign) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->execute([
         getClientIP(),
-        $_SERVER['HTTP_USER_AGENT'] ?? '',
-        $_SERVER['HTTP_REFERER'] ?? '',
-        $_SERVER['REQUEST_URI'] ?? '/',
-        $_GET['utm_source'] ?? null,
-        $_GET['utm_medium'] ?? null,
-        $_GET['utm_campaign'] ?? null
+        InputValidator::validateString($_SERVER['HTTP_USER_AGENT'] ?? '', 255),
+        InputValidator::validateUrl($_SERVER['HTTP_REFERER'] ?? '', 255),
+        InputValidator::validateUrl($_SERVER['REQUEST_URI'] ?? '', 255) ?: '/',
+        InputValidator::validateAlphaNumSpace($_GET['utm_source'] ?? '', 100) ?: null,
+        InputValidator::validateAlphaNumSpace($_GET['utm_medium'] ?? '', 100) ?: null,
+        InputValidator::validateAlphaNumSpace($_GET['utm_campaign'] ?? '', 100) ?: null
     ]);
 } catch (Exception $e) {
     // Silently fail — don't break page for analytics

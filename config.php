@@ -114,6 +114,9 @@ function sanitize($input) {
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
 }
 
+require_once __DIR__ . '/validator.php';
+require_once __DIR__ . '/rate_limiter.php';
+
 function jsonResponse($data, $code = 200) {
     http_response_code($code);
     header('Content-Type: application/json');
@@ -125,17 +128,12 @@ function getClientIP() {
     $keys = ['HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'REMOTE_ADDR'];
     foreach ($keys as $key) {
         if (!empty($_SERVER[$key])) {
-            $ip = explode(',', $_SERVER[$key]);
-            return trim($ip[0]);
+            $ips = explode(',', $_SERVER[$key]);
+            $ip = trim($ips[0]);
+            if (filter_var($ip, FILTER_VALIDATE_IP)) {
+                return $ip;
+            }
         }
     }
     return '0.0.0.0';
-}
-
-function isValidPhone($phone) {
-    return preg_match('/^[6-9]\d{9}$/', $phone);
-}
-
-function isValidEmail($email) {
-    return filter_var($email, FILTER_VALIDATE_EMAIL);
 }

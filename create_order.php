@@ -12,11 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     jsonResponse(['success' => false, 'message' => 'Invalid request method.'], 405);
 }
 
+if (!RateLimiter::checkLimit('payments', 15, 3600)) {
+    jsonResponse(['success' => false, 'message' => 'Too many payment requests. Please try again later.'], 429);
+}
+
 // Get input
 $input = json_decode(file_get_contents('php://input'), true);
-$studentId = intval($input['student_id'] ?? 0);
+$studentId = InputValidator::validateInt($input['student_id'] ?? 0);
 
-if ($studentId <= 0) {
+if (!$studentId) {
     jsonResponse(['success' => false, 'message' => 'Invalid student ID.'], 400);
 }
 

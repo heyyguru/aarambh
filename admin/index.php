@@ -6,24 +6,34 @@ define('AARAMBH_INIT', true);
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/auth.php';
 
+init_secure_session();
 $admin_username = require_admin_auth();
 
-// Logout
-if (isset($_GET['logout'])) {
-    setcookie('admin_access_token', '', time() - 3600, '/');
-    setcookie('admin_refresh_token', '', time() - 3600, '/');
-    header('Location: login.php');
-    exit;
+// Logout (POST only with CSRF validation)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'logout') {
+    if (validate_csrf_token($_POST['csrf_token'] ?? '')) {
+        delete_secure_cookie('admin_access_token');
+        delete_secure_cookie('admin_refresh_token');
+        session_destroy();
+        header('Location: https://aarambh.heyyguru.in');
+        exit;
+    }
 }
 
 $db = getDB();
 
-// Handle call status update
+// Handle call status update (with CSRF validation)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'update_call_status') {
-        $studentId = intval($_POST['student_id'] ?? 0);
-        $callStatus = sanitize($_POST['call_status'] ?? '');
-        $notes = sanitize($_POST['notes'] ?? '');
+        // Validate CSRF token
+        if (!validate_csrf_token($_POST['csrf_token'] ?? '')) {
+            http_response_code(403);
+            exit('CSRF validation failed.');
+        }
+
+        $studentId = InputValidator::validateInt($_POST['student_id'] ?? 0);
+        $callStatus = InputValidator::validateEnum($_POST['call_status'] ?? '', ['not_called', 'called', 'follow_up', 'converted', 'not_interested']);
+        $notes = InputValidator::validateString($_POST['notes'] ?? '', 1000);
         
         if ($studentId > 0 && in_array($callStatus, ['not_called', 'called', 'follow_up', 'converted', 'not_interested'])) {
             $stmt = $db->prepare("UPDATE students SET call_status = ?, notes = ?, updated_at = NOW() WHERE id = ?");
@@ -35,10 +45,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 }
 
 // Filters
-$statusFilter = $_GET['status'] ?? 'all';
-$callFilter = $_GET['call_status'] ?? 'all';
-$search = sanitize($_GET['search'] ?? '');
-$page = max(1, intval($_GET['page'] ?? 1));
+$statusFilter = InputValidator::validateEnum($_GET['status'] ?? 'all', ['all', 'lead', 'payment_initiated', 'paid', 'enrolled']) ?: 'all';
+$callFilter = InputValidator::validateEnum($_GET['call_status'] ?? 'all', ['all', 'not_called', 'called', 'follow_up', 'converted', 'not_interested']) ?: 'all';
+$search = InputValidator::validateString($_GET['search'] ?? '', 100);
+$page = max(1, InputValidator::validateInt($_GET['page'] ?? 1) ?: 1);
 $perPage = 25;
 $offset = ($page - 1) * $perPage;
 
@@ -132,7 +142,11 @@ $todayVisitStats = $todayVisitStmt->fetch();
                 <a href="index.php?call_status=not_called" class="<?php echo ($cCall === 'not_called') ? 'active' : ''; ?>"><i data-lucide="phone-missed"></i> Not Called</a>
                 <a href="index.php?call_status=follow_up" class="<?php echo ($cCall === 'follow_up') ? 'active' : ''; ?>"><i data-lucide="refresh-cw"></i> Follow Up</a>
                 <a href="export.php"><i data-lucide="download"></i> Export CSV</a>
-                <a href="?logout=1" class="logout"><i data-lucide="log-out"></i> Logout</a>
+                <form method="POST" action="" style="margin:0;padding:0;">
+                    <?php echo csrf_hidden_field(); ?>
+                    <input type="hidden" name="action" value="logout">
+                    <button type="submit" class="logout" style="background:none;border:none;cursor:pointer;width:100%;text-align:left;font:inherit;color:inherit;padding:inherit;"><i data-lucide="log-out"></i> Logout</button>
+                </form>
             </nav>
         </aside>
 
@@ -299,6 +313,7 @@ $todayVisitStats = $todayVisitStmt->fetch();
         <div class="modal-card">
             <h3>Update Call Status</h3>
             <form method="POST" action="">
+                <?php echo csrf_hidden_field(); ?>
                 <input type="hidden" name="action" value="update_call_status">
                 <input type="hidden" name="student_id" id="modal-student-id">
                 <div class="form-group">

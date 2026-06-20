@@ -4,6 +4,8 @@
  */
 if (!defined('AARAMBH_INIT')) exit;
 
+require_once __DIR__ . '/security.php';
+
 define('JWT_SECRET', getenv('JWT_SECRET'));
 if (empty(JWT_SECRET)) {
     die('Critical Error: JWT_SECRET is not set in the environment variables.');
@@ -78,8 +80,8 @@ function require_admin_auth() {
                 'exp' => time() + JWT_ACCESS_EXP
             ]);
             
-            // Set cookie (HttpOnly)
-            setcookie('admin_access_token', $newAccess, time() + JWT_ACCESS_EXP, '/', '', false, true);
+            // Set cookie (Secure, HttpOnly, SameSite=Strict)
+            set_secure_cookie('admin_access_token', $newAccess, JWT_ACCESS_EXP);
             
             return $username;
         }

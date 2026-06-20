@@ -6,11 +6,23 @@ define('AARAMBH_INIT', true);
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/auth.php';
 
+init_secure_session();
 $admin_username = require_admin_auth();
+
+// Logout (POST only with CSRF validation)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'logout') {
+    if (validate_csrf_token($_POST['csrf_token'] ?? '')) {
+        delete_secure_cookie('admin_access_token');
+        delete_secure_cookie('admin_refresh_token');
+        session_destroy();
+        header('Location: https://aarambh.heyyguru.in');
+        exit;
+    }
+}
 
 $db = getDB();
 
-$page = max(1, intval($_GET['page'] ?? 1));
+$page = max(1, InputValidator::validateInt($_GET['page'] ?? 1) ?: 1);
 $perPage = 50;
 $offset = ($page - 1) * $perPage;
 
@@ -49,7 +61,11 @@ $visits = $stmt->fetchAll();
                 <a href="index.php?call_status=not_called"><i data-lucide="phone-missed"></i> Not Called</a>
                 <a href="index.php?call_status=follow_up"><i data-lucide="refresh-cw"></i> Follow Up</a>
                 <a href="export.php"><i data-lucide="download"></i> Export CSV</a>
-                <a href="?logout=1" class="logout"><i data-lucide="log-out"></i> Logout</a>
+                <form method="POST" action="" style="margin:0;padding:0;">
+                    <?php echo csrf_hidden_field(); ?>
+                    <input type="hidden" name="action" value="logout">
+                    <button type="submit" class="logout" style="background:none;border:none;cursor:pointer;width:100%;text-align:left;font:inherit;color:inherit;padding:inherit;"><i data-lucide="log-out"></i> Logout</button>
+                </form>
             </nav>
         </aside>
 

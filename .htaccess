@@ -19,7 +19,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)/$ /$1 [L,R=301]
 
 # Block access to sensitive files
-<FilesMatch "(^\.htaccess|config\.php|db\.sql|send_email\.php)$">
+<FilesMatch "(^\.htaccess|\.env|config\.php|db\.sql|send_email\.php)$">
     Order Allow,Deny
     Deny from all
 </FilesMatch>
@@ -39,6 +39,8 @@ RewriteRule ^(.*)/$ /$1 [L,R=301]
     Header set X-XSS-Protection "1; mode=block"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
     Header set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://checkout.razorpay.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.razorpay.com https://lumberjack.razorpay.com; frame-src https://api.razorpay.com;"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 </IfModule>
 
 # Browser Caching

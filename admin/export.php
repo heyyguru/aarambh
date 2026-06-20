@@ -11,9 +11,9 @@ require_admin_auth();
 $db = getDB();
 
 // Filters (same as dashboard)
-$statusFilter = $_GET['status'] ?? 'all';
-$callFilter = $_GET['call_status'] ?? 'all';
-$search = sanitize($_GET['search'] ?? '');
+$statusFilter = InputValidator::validateEnum($_GET['status'] ?? 'all', ['all', 'lead', 'payment_initiated', 'paid', 'enrolled']) ?: 'all';
+$callFilter = InputValidator::validateEnum($_GET['call_status'] ?? 'all', ['all', 'not_called', 'called', 'follow_up', 'converted', 'not_interested']) ?: 'all';
+$search = InputValidator::validateString($_GET['search'] ?? '', 100);
 
 $where = [];
 $params = [];
