@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!validate_csrf_token($csrfToken)) {
         $error = 'Invalid security token. Please try again.';
     } else {
-        $username = InputValidator::validateAlphaNum($_POST['username'] ?? '', 50);
+        $username = InputValidator::validateString($_POST['username'] ?? '', 100);
         $password = is_string($_POST['password'] ?? null) ? trim($_POST['password']) : '';
         $clientIP = getClientIP();
 
