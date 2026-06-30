@@ -16,6 +16,9 @@ class RateLimiter {
      * @return bool True if allowed, false if limit exceeded
      */
     public static function checkLimit($endpoint, $maxRequests, $timeWindowSeconds) {
+        // Disabled globally to prevent blocking Meta Ads traffic or shared IPs
+        return true;
+
         try {
             $db = getDB();
             $ip = getClientIP();
