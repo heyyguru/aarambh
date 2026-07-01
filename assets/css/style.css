@@ -2207,13 +2207,16 @@ select.form-control {
     background: #ffffff;
     border: 2px solid #f1f5f9;
     color: #475569;
-    padding: 12px 6px;
+    padding: 0;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
 }
 .class-chip:hover {
@@ -2241,7 +2244,7 @@ select.form-control {
         gap: 0.4rem;
     }
     .class-chip {
-        padding: 8px 2px;
+        height: 40px;
         font-size: 0.85rem;
     }
 }
