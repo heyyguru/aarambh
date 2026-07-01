@@ -182,8 +182,8 @@ try {
                     of Smart Learning
                 </h1>
                 <div class="hero-subtitle" style="margin-bottom: 1.5rem; text-align: left;">
-                    <p style="font-weight: 700; color: var(--text-dark); margin-bottom: 5px; font-size: 1.2rem;">For Classes 1st to 10th</p>
-                    <p style="color: var(--text-light); font-size: 1rem;">Subjects : Maths, Science, Social Science, English, Skill Development Course</p>
+                    <p style="font-weight: 700; color: #ffffff; margin-bottom: 5px; font-size: 1.2rem;">For Classes 1st to 10th</p>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 1rem;">Subjects : Maths, Science, Social Science, English, Skill Development Course</p>
                 </div>
                 
                 <!-- Course Highlights -->
@@ -1028,7 +1028,7 @@ try {
 
     <!-- ==================== ENROLL MODAL ==================== -->
     <div class="success-overlay" id="enroll-modal" style="z-index: 10000; display: none;">
-        <div class="success-card" style="padding: 0; background: var(--bg-dark); max-width: 400px; width: 90%; border-radius: 16px; position: relative; border: 1px solid rgba(255,255,255,0.1); text-align: left; overflow: visible;">
+        <div class="success-card" style="padding: 0; background: #0B0E1A; max-width: 400px; width: 90%; border-radius: 16px; position: relative; border: 1px solid rgba(255,255,255,0.1); text-align: left; overflow: visible; box-shadow: 0 15px 40px rgba(0,0,0,0.5);">
             <button class="close-modal" onclick="closeEnrollModal()" style="position: absolute; top: -15px; right: -15px; background: white; color: var(--text-dark); border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
@@ -1049,16 +1049,16 @@ try {
                             
                             <!-- Chips for Class Selection -->
                             <div class="class-chips-grid">
-                                <button type="button" class="modal-class-chip" data-value="1">1st</button>
-                                <button type="button" class="modal-class-chip" data-value="2">2nd</button>
-                                <button type="button" class="modal-class-chip" data-value="3">3rd</button>
-                                <button type="button" class="modal-class-chip" data-value="4">4th</button>
-                                <button type="button" class="modal-class-chip" data-value="5">5th</button>
-                                <button type="button" class="modal-class-chip" data-value="6">6th</button>
-                                <button type="button" class="modal-class-chip" data-value="7">7th</button>
-                                <button type="button" class="modal-class-chip" data-value="8">8th</button>
-                                <button type="button" class="modal-class-chip" data-value="9">9th</button>
-                                <button type="button" class="modal-class-chip" data-value="10">10th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="1">1st</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="2">2nd</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="3">3rd</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="4">4th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="5">5th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="6">6th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="7">7th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="8">8th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="9">9th</button>
+                                <button type="button" class="class-chip modal-class-chip" data-value="10">10th</button>
                             </div>
                             <div class="form-error" id="modal-error-class">Please select a class</div>
                         </div>

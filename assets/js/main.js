@@ -213,12 +213,15 @@
             
             // New Form Countdown (10 minutes)
             const formTimer = $('#countdown-timer');
-            if (formTimer) {
-                if (formCountdownSeconds > 0) formCountdownSeconds--;
-                const m = Math.floor(formCountdownSeconds / 60);
-                const s = formCountdownSeconds % 60;
-                formTimer.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-            }
+            const modalTimer = $('#modal-countdown-timer');
+            
+            if (formCountdownSeconds > 0) formCountdownSeconds--;
+            const m = Math.floor(formCountdownSeconds / 60);
+            const s = formCountdownSeconds % 60;
+            const timeString = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            
+            if (formTimer) formTimer.textContent = timeString;
+            if (modalTimer) modalTimer.textContent = timeString;
         }
 
         updateTimer();
