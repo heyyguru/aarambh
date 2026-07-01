@@ -186,7 +186,7 @@ try {
                     Experience Live Classes, Expert Mentors & more — before you commit.
                 </p>
                 
-                <img src="assets/images/science_class_screen.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <img src="assets/images/header_teaching.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
             <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
@@ -361,9 +361,8 @@ try {
                         </li>
                     </ul>
                 </div>
-                <div class="two-teacher-images reveal">
-                    <img src="assets/images/master_teacher.png" alt="Master Teacher" class="img-master">
-                    <img src="assets/images/mentor.png" alt="Personal Mentor guiding student" class="img-mentor">
+                <div class="two-teacher-images reveal" style="aspect-ratio: auto; display: flex; align-items: center; justify-content: center;">
+                    <img src="assets/images/dual_teacher_model.jpg" alt="Dual Teacher Model" style="width: 100%; max-width: 500px; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
                 </div>
             </div>
         </div>
