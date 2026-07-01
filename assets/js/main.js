@@ -891,4 +891,135 @@
         input.addEventListener('change', trackLead);
     });
 
+    // ---------------------------------------------------
+    // Modal Logic
+    // ---------------------------------------------------
+    window.openEnrollModal = function() {
+        const modal = document.getElementById('enroll-modal');
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    };
+
+    window.closeEnrollModal = function() {
+        const modal = document.getElementById('enroll-modal');
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    };
+
+    const modalForm = document.getElementById('modalEnrollmentForm');
+    if (modalForm) {
+        const modalChips = document.querySelectorAll('.modal-class-chip');
+        const modalHiddenInput = document.getElementById('modal_student_class');
+        const modalPhoneInput = document.getElementById('modal-phone');
+        
+        modalChips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                modalChips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                if (modalHiddenInput) {
+                    modalHiddenInput.value = chip.dataset.value;
+                    const errorClass = document.getElementById('modal-error-class');
+                    if (errorClass) errorClass.classList.remove('show');
+                    
+                    if (modalPhoneInput) {
+                        modalPhoneInput.focus();
+                    }
+                }
+            });
+        });
+
+        modalForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            let isValid = true;
+            
+            // Phone validation
+            const phoneRegex = /^[6-9]\d{9}$/;
+            const phoneVal = modalPhoneInput.value.trim();
+            const phoneError = document.getElementById('modal-error-phone');
+            if (!phoneVal || !phoneRegex.test(phoneVal)) {
+                if (phoneError) phoneError.classList.add('show');
+                modalPhoneInput.classList.add('error');
+                isValid = false;
+            } else {
+                if (phoneError) phoneError.classList.remove('show');
+                modalPhoneInput.classList.remove('error');
+            }
+
+            // Class validation
+            const classVal = modalHiddenInput.value;
+            const classError = document.getElementById('modal-error-class');
+            if (!classVal) {
+                if (classError) classError.classList.add('show');
+                isValid = false;
+            } else {
+                if (classError) classError.classList.remove('show');
+            }
+
+            if (!isValid) return;
+
+            const submitBtn = document.getElementById('modalSubmitBtn');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            try {
+                // Submit lead data
+                const formData = new FormData(modalForm);
+                // Also pull UTM tags from main form if present
+                const utmTags = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+                utmTags.forEach(tag => {
+                    const el = document.getElementById(tag);
+                    if (el && el.value) formData.append(tag, el.value);
+                });
+
+                const response = await fetch('submit_lead.php', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (!data.success) {
+                    alert(data.message || 'Something went wrong. Please try again.');
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                // Create Razorpay order
+                const orderResponse = await fetch('create_order.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ student_id: data.student_id })
+                });
+
+                const orderData = await orderResponse.json();
+
+                if (!orderData.success) {
+                    alert(orderData.message || 'Failed to create payment order.');
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                    return;
+                }
+
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+
+                // Close modal and open razorpay
+                window.closeEnrollModal();
+                openRazorpay(orderData, data.student_id, formData);
+
+            } catch (error) {
+                console.error('Modal Form submission error:', error);
+                alert('Network error. Please check your connection and try again.');
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
 })();

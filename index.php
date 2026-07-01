@@ -146,7 +146,7 @@ try {
                 <a href="#subjects">Subjects</a>
                 <a href="#testimonials">Results</a>
                 <a href="#faq">FAQ</a>
-                <a href="#hero" class="nav-cta">Enroll Now — ₹19</a>
+                <a href="javascript:void(0)" class="nav-cta" onclick="openEnrollModal()">Enroll Now — ₹19</a>
             </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
@@ -181,10 +181,34 @@ try {
                     <span class="highlight">Experience 6 Days</span><br>
                     of Smart Learning
                 </h1>
-                <p class="hero-subtitle" style="margin-bottom: 1.5rem;">
-                    India's #1 Smart Learning Platform presents a powerful starter program. 
-                    Experience Live Classes, Expert Mentors & more — before you commit.
-                </p>
+                <div class="hero-subtitle" style="margin-bottom: 1.5rem; text-align: left;">
+                    <p style="font-weight: 700; color: var(--text-dark); margin-bottom: 5px; font-size: 1.2rem;">For Classes 1st to 10th</p>
+                    <p style="color: var(--text-light); font-size: 1rem;">Subjects : Maths, Science, Social Science, English, Skill Development Course</p>
+                </div>
+                
+                <!-- Course Highlights -->
+                <div style="margin-bottom: 1.5rem; text-align: center; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5305" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-dark); margin: 0;">Course Highlights</h3>
+                    </div>
+                    <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.5rem;">Learn Pro Tips in Our Exclusive Course!</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+                        <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
+                            <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Next Batch from</p>
+                            <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">Upcoming Monday</p>
+                        </div>
+                        <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
+                            <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Duration</p>
+                            <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">6 Days, 6 Live Classes</p>
+                        </div>
+                    </div>
+                    <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
+                        <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Curriculum</p>
+                        <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">Aligned as per CBSE, ICSE, State Boards</p>
+                    </div>
+                </div>
                 
                 <img src="assets/images/hero_phone_mockup.jpg" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
@@ -351,7 +375,7 @@ try {
                         <span class="label">Secs</span>
                     </div>
                 </div>
-                <a href="#hero" class="btn btn-accent btn-sm">Grab Now →</a>
+                <a href="javascript:void(0)" class="btn btn-accent btn-sm" onclick="openEnrollModal()">Grab Now →</a>
             </div>
         </div>
     </div>
@@ -965,7 +989,7 @@ try {
                         <li><a href="#subjects">Vedic Maths</a></li>
                         <li><a href="#subjects">Public Speaking</a></li>
                         <li><a href="#subjects">Learn India</a></li>
-                        <li><a href="#hero">Enroll Now</a></li>
+                        <li><a href="javascript:void(0)" onclick="openEnrollModal()">Enroll Now</a></li>
                     </ul>
                 </div>
             </div>
@@ -989,7 +1013,7 @@ try {
                 <span class="original">₹999</span>
                 <span class="current">₹19</span>
             </div>
-            <a href="#hero" class="btn btn-cta btn-sm">Enroll Now →</a>
+            <a href="javascript:void(0)" class="btn btn-cta btn-sm" onclick="openEnrollModal()">Enroll Now →</a>
         </div>
     </div>
 
@@ -999,6 +1023,67 @@ try {
         <div>
             <div class="toast-text"><strong id="toast-name">Rahul from Delhi</strong> just enrolled!</div>
             <div class="toast-time" id="toast-time">2 minutes ago</div>
+        </div>
+    </div>
+
+    <!-- ==================== ENROLL MODAL ==================== -->
+    <div class="success-overlay" id="enroll-modal" style="z-index: 10000; display: none;">
+        <div class="success-card" style="padding: 0; background: var(--bg-dark); max-width: 400px; width: 90%; border-radius: 16px; position: relative; border: 1px solid rgba(255,255,255,0.1); text-align: left; overflow: visible;">
+            <button class="close-modal" onclick="closeEnrollModal()" style="position: absolute; top: -15px; right: -15px; background: white; color: var(--text-dark); border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 10;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+            <div style="background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); color: white; text-align: center; padding: 12px; border-radius: 16px 16px 0 0; font-weight: 700; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                Offer Ends In: <span id="modal-countdown-timer">10:00</span>
+            </div>
+            
+            <div style="padding: 1.5rem;">
+                <h3 style="color:var(--text-white);margin-bottom:0.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
+                    6 Days Booster Course
+                </h3>
+                
+                <div class="form-container" style="background: transparent; box-shadow: none; padding: 0;">
+                    <form id="modalEnrollmentForm" novalidate>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="color:var(--text-white); text-align: left; display: flex; align-items: center; gap: 6px; margin-bottom: 0.5rem;">Choose Class to Boost Score <i data-lucide="trending-up" style="width:16px;height:16px;color:#FF5305;"></i> <span class="required">*</span></label>
+                            
+                            <!-- Chips for Class Selection -->
+                            <div class="class-chips-grid">
+                                <button type="button" class="modal-class-chip" data-value="1">1st</button>
+                                <button type="button" class="modal-class-chip" data-value="2">2nd</button>
+                                <button type="button" class="modal-class-chip" data-value="3">3rd</button>
+                                <button type="button" class="modal-class-chip" data-value="4">4th</button>
+                                <button type="button" class="modal-class-chip" data-value="5">5th</button>
+                                <button type="button" class="modal-class-chip" data-value="6">6th</button>
+                                <button type="button" class="modal-class-chip" data-value="7">7th</button>
+                                <button type="button" class="modal-class-chip" data-value="8">8th</button>
+                                <button type="button" class="modal-class-chip" data-value="9">9th</button>
+                                <button type="button" class="modal-class-chip" data-value="10">10th</button>
+                            </div>
+                            <div class="form-error" id="modal-error-class">Please select a class</div>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 1.5rem;">
+                            <label for="modal-phone" style="color:var(--text-white); text-align: left; display: block; margin-bottom: 0.5rem;">Phone Number <span class="required">*</span></label>
+                            <div class="phone-group">
+                                <span class="phone-prefix" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; display: flex; align-items: center; justify-content: center; width: 60px;">+91</span>
+                                <input type="tel" id="modal-phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; font-size: 1.1rem;">
+                            </div>
+                            <div class="form-error" id="modal-error-phone">Please enter a valid 10-digit mobile number</div>
+                        </div>
+
+                        <!-- Hidden fields -->
+                        <input type="hidden" id="modal_student_class" name="student_class" value="">
+                        
+                        <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="modalSubmitBtn" style="width: 100%; margin-top: 1rem; height: 55px; font-size: 1.2rem;">
+                            <span class="btn-text">
+                                Enroll Now for ₹19
+                            </span>
+                            <span class="spinner"></span>
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
