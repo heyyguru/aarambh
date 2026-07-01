@@ -287,9 +287,22 @@ $todayVisitStats = $todayVisitStmt->fetch();
                                     <td><code style="font-size:0.8rem;color:#8890B0;"><?php echo sanitize($s['ip_address'] ?: '-'); ?></code></td>
                                     <td>
                                         <?php 
-                                            $utmStr = sanitize($s['utm_source'] ?: '');
-                                            if (!empty($s['utm_campaign'])) $utmStr .= ' / ' . sanitize($s['utm_campaign']);
-                                            echo $utmStr ?: '-';
+                                            $src = strtolower(sanitize($s['utm_source'] ?: ''));
+                                            $camp = sanitize($s['utm_campaign'] ?: '');
+                                            
+                                            if ($src === 'instagram') {
+                                                echo '<span class="badge" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;"><i data-lucide="instagram" style="width:12px;height:12px;margin-right:2px;display:inline-block;vertical-align:middle;"></i> Instagram</span>';
+                                            } elseif ($src === 'facebook') {
+                                                echo '<span class="badge" style="background: #1877F2; color: white; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;"><i data-lucide="facebook" style="width:12px;height:12px;margin-right:2px;display:inline-block;vertical-align:middle;"></i> Facebook</span>';
+                                            } elseif ($src) {
+                                                echo '<span class="badge" style="background: #e2e8f0; color: #475569; padding: 4px 8px; border-radius: 4px; font-size: 0.75rem;">' . ucfirst($src) . '</span>';
+                                            } else {
+                                                echo '<span style="color: #94a3b8;">-</span>';
+                                            }
+                                            
+                                            if ($camp) {
+                                                echo '<div style="font-size: 0.7rem; color: #64748b; margin-top: 4px; word-break: break-all;">' . $camp . '</div>';
+                                            }
                                         ?>
                                     </td>
                                     <td><?php echo date('d M, H:i', strtotime($s['created_at'])); ?></td>

@@ -186,7 +186,7 @@ try {
                     Experience Live Classes, Expert Mentors & more — before you commit.
                 </p>
                 
-                <img src="assets/images/header_teaching.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <img src="assets/images/hero_phone_mockup.jpg" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
             <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
@@ -291,6 +291,31 @@ try {
             </div>
         </div>
     </div>
+    <!-- ==================== AVERAGE TO TOPPER ==================== -->
+    <section class="section section-light" id="marketing-topper" style="padding: 4rem 0; background: linear-gradient(135deg, #f8f9fa 0%, #eef2f5 100%);">
+        <div class="container text-center">
+            <span class="section-badge" style="display:inline-flex;align-items:center;gap:6px; background: rgba(0,200,81,0.1); color: #00A844; border: 1px solid rgba(0,200,81,0.2);">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                Proven Results
+            </span>
+            <h2 class="section-title" style="margin-top: 1rem; font-size: 2.2rem; font-weight: 800;">The <strong style="color:var(--primary-color);">Average to Topper</strong> Journey!</h2>
+            <p class="section-subtitle" style="font-size: 1.1rem; max-width: 700px; margin: 1rem auto 2rem;">
+                HeyyGuru transforms struggling students into confident achievers. 
+                With our highly interactive live sessions, your child can build the confidence to <strong style="color:var(--text-dark); font-weight: 800;">Score 100%</strong>!
+            </p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; border-top: 4px solid var(--primary-color);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-dark); font-weight: 700;">🚀 From Average to Topper</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6;">Our dual-teacher model ensures no doubt is left unresolved, providing the perfect environment to excel and hit top scores.</p>
+                </div>
+                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; border-top: 4px solid var(--primary-color);">
+                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-dark); font-weight: 700;">💻 Live Interactive Sessions</h3>
+                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6;">Say goodbye to boring recorded videos! Engage in real-time with instant feedback and interactive quizzes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ==================== URGENCY TIMER ==================== -->
     <div class="urgency-bar" id="urgency-bar">

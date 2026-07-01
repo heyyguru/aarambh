@@ -288,10 +288,21 @@
             
             // If we have a valid phone and a class selected, track silently
             if (classVal && phoneRegex.test(phoneVal)) {
+                // Gather UTMs if they exist
+                const utmSource = $('#utm_source') ? $('#utm_source').value : '';
+                const utmMedium = $('#utm_medium') ? $('#utm_medium').value : '';
+                const utmCampaign = $('#utm_campaign') ? $('#utm_campaign').value : '';
+                
                 fetch('track_visitor.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ phone: phoneVal, student_class: classVal })
+                    body: JSON.stringify({ 
+                        phone: phoneVal, 
+                        student_class: classVal,
+                        utm_source: utmSource,
+                        utm_medium: utmMedium,
+                        utm_campaign: utmCampaign
+                    })
                 }).catch(err => console.error('Tracking failed', err));
             }
         }

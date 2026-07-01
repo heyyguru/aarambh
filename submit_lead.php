@@ -24,6 +24,16 @@ $phone = InputValidator::validatePhone($_POST['phone'] ?? '');
 $studentClass = InputValidator::validateAlphaNumSpace($_POST['student_class'] ?? '', 50);
 $city = InputValidator::validateAlphaNumSpace($_POST['city'] ?? '', 100);
 $utmSource = InputValidator::validateAlphaNumSpace($_POST['utm_source'] ?? '', 100);
+
+// Fallback to Referrer if utm_source is empty
+if (empty($utmSource) && isset($_SERVER['HTTP_REFERER'])) {
+    $referer = strtolower($_SERVER['HTTP_REFERER']);
+    if (strpos($referer, 'instagram.com') !== false) {
+        $utmSource = 'instagram';
+    } elseif (strpos($referer, 'facebook.com') !== false) {
+        $utmSource = 'facebook';
+    }
+}
 $utmMedium = InputValidator::validateAlphaNumSpace($_POST['utm_medium'] ?? '', 100);
 $utmCampaign = InputValidator::validateAlphaNumSpace($_POST['utm_campaign'] ?? '', 100);
 $utmContent = InputValidator::validateAlphaNumSpace($_POST['utm_content'] ?? '', 100);
