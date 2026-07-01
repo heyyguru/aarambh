@@ -146,7 +146,7 @@ try {
                 <a href="#subjects">Subjects</a>
                 <a href="#testimonials">Results</a>
                 <a href="#faq">FAQ</a>
-                <a href="#enroll" class="nav-cta">Enroll Now — ₹19</a>
+                <a href="#hero" class="nav-cta">Enroll Now — ₹19</a>
             </div>
             <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span>
@@ -197,7 +197,7 @@ try {
                 <div class="hero-visual-card" style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 0 16px 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
                     
                     <h3 style="color:var(--text-white);margin-bottom:0.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
-                        Concept Booster Course
+                        6 Days Booster Course
                     </h3>
                     <div style="background: rgba(255, 223, 209, 0.2); padding: 8px; border-radius: 8px; text-align: center; color: #FFDFD1; font-size: 0.9rem; margin-bottom: 1.5rem;">
                         5X Efficient Learning Methods
@@ -351,7 +351,7 @@ try {
                         <span class="label">Secs</span>
                     </div>
                 </div>
-                <a href="#enroll" class="btn btn-accent btn-sm">Grab Now →</a>
+                <a href="#hero" class="btn btn-accent btn-sm">Grab Now →</a>
             </div>
         </div>
     </div>
@@ -752,7 +752,7 @@ try {
                     <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 1:1 Doubt Resolution</li>
                     <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 100% Risk-Free Guarantee</li>
                 </ul>
-                <a href="#enroll" class="btn btn-cta btn-lg" style="width:100%;">
+                <a href="#hero" class="btn btn-cta btn-lg" style="width:100%;">
                     Start AARAMBH Journey — ₹19 →
                 </a>
                 <div class="form-trust" style="margin-top:1rem;">
@@ -922,7 +922,7 @@ try {
             <p style="color:var(--text-light);font-size:1.1rem;margin-bottom:1.5rem;">
                 Na loan ka stress, na padhai ka tension — HeyyGuru mein student ka progress.
             </p>
-            <a href="#enroll" class="btn btn-cta btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
+            <a href="#hero" class="btn btn-cta btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                 Start AARAMBH Journey — ₹19
             </a>
@@ -965,7 +965,7 @@ try {
                         <li><a href="#subjects">Vedic Maths</a></li>
                         <li><a href="#subjects">Public Speaking</a></li>
                         <li><a href="#subjects">Learn India</a></li>
-                        <li><a href="#enroll">Enroll Now</a></li>
+                        <li><a href="#hero">Enroll Now</a></li>
                     </ul>
                 </div>
             </div>
@@ -989,7 +989,7 @@ try {
                 <span class="original">₹999</span>
                 <span class="current">₹19</span>
             </div>
-            <a href="#enroll" class="btn btn-cta btn-sm">Enroll Now →</a>
+            <a href="#hero" class="btn btn-cta btn-sm">Enroll Now →</a>
         </div>
     </div>
 
