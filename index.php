@@ -776,7 +776,7 @@ try {
                     <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 1:1 Doubt Resolution</li>
                     <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></span> 100% Risk-Free Guarantee</li>
                 </ul>
-                <a href="#hero" class="btn btn-cta btn-lg" style="width:100%;">
+                <a href="javascript:void(0)" onclick="openEnrollModal()" class="btn btn-cta btn-lg" style="width:100%;">
                     Start AARAMBH Journey — ₹19 →
                 </a>
                 <div class="form-trust" style="margin-top:1rem;">
@@ -946,7 +946,7 @@ try {
             <p style="color:var(--text-light);font-size:1.1rem;margin-bottom:1.5rem;">
                 Na loan ka stress, na padhai ka tension — HeyyGuru mein student ka progress.
             </p>
-            <a href="#hero" class="btn btn-cta btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
+            <a href="javascript:void(0)" onclick="openEnrollModal()" class="btn btn-cta btn-lg" style="display:inline-flex;align-items:center;gap:8px;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                 Start AARAMBH Journey — ₹19
             </a>
