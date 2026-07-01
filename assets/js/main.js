@@ -264,6 +264,19 @@
         const form = $('#enrollmentForm');
         if (!form) return;
 
+        // Chip selection logic
+        const chips = document.querySelectorAll('.class-chip');
+        const hiddenInput = $('#student_class');
+        
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                if (hiddenInput) hiddenInput.value = chip.dataset.value;
+                clearFieldError('class');
+            });
+        });
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 

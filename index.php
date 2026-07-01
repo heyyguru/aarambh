@@ -144,7 +144,6 @@ try {
             <div class="nav-links" id="navLinks">
                 <a href="#features">Features</a>
                 <a href="#subjects">Subjects</a>
-                <a href="#how-it-works">How It Works</a>
                 <a href="#testimonials">Results</a>
                 <a href="#faq">FAQ</a>
                 <a href="#enroll" class="nav-cta">Enroll Now — ₹19</a>
@@ -190,38 +189,39 @@ try {
                 <img src="assets/images/teacher_ai.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
-            <div class="hero-visual">
+            <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
                 <div class="hero-visual-card" style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
                     
-                    <h3 style="color:var(--text-white);margin-bottom:1.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
-                        Join AARAMBH at just ₹19
+                    <h3 style="color:var(--text-white);margin-bottom:0.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
+                        Concept Booster Course
                     </h3>
-                    <p style="color:var(--text-light); text-align:center; margin-bottom:1.5rem; font-size:0.95rem;">
-                        Fill details below to book your slot
-                    </p>
+                    <div style="background: rgba(255, 223, 209, 0.2); padding: 8px; border-radius: 8px; text-align: center; color: #FFDFD1; font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        5X Efficient Learning Methods by IITians
+                    </div>
                     
                     <div class="form-container" id="enrollment-form-container" style="background: transparent; box-shadow: none; padding: 0;">
                         <form id="enrollmentForm" novalidate>
-                            <div class="form-group">
-                                <label for="student_class" style="color:var(--text-white); text-align: left; display: block;">Select Class <span class="required">*</span></label>
-                                <select id="student_class" name="student_class" class="form-control" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; font-size: 1.1rem;">
-                                    <option value="" style="color: black;">Select Class</option>
-                                    <option value="1" style="color: black;">Class 1</option>
-                                    <option value="2" style="color: black;">Class 2</option>
-                                    <option value="3" style="color: black;">Class 3</option>
-                                    <option value="4" style="color: black;">Class 4</option>
-                                    <option value="5" style="color: black;">Class 5</option>
-                                    <option value="6" style="color: black;">Class 6</option>
-                                    <option value="7" style="color: black;">Class 7</option>
-                                    <option value="8" style="color: black;">Class 8</option>
-                                    <option value="9" style="color: black;">Class 9</option>
-                                    <option value="10" style="color: black;">Class 10</option>
-                                </select>
+                            <div class="form-group" style="margin-bottom: 1.5rem;">
+                                <label style="color:var(--text-white); text-align: left; display: block; margin-bottom: 0.5rem;">Choose Class to Boost Score (2026-27) 🔥 <span class="required">*</span></label>
+                                
+                                <!-- Chips for Class Selection -->
+                                <div class="class-chips-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                                    <button type="button" class="class-chip" data-value="1">1st</button>
+                                    <button type="button" class="class-chip" data-value="2">2nd</button>
+                                    <button type="button" class="class-chip" data-value="3">3rd</button>
+                                    <button type="button" class="class-chip" data-value="4">4th</button>
+                                    <button type="button" class="class-chip" data-value="5">5th</button>
+                                    <button type="button" class="class-chip" data-value="6">6th</button>
+                                    <button type="button" class="class-chip" data-value="7">7th</button>
+                                    <button type="button" class="class-chip" data-value="8">8th</button>
+                                    <button type="button" class="class-chip" data-value="9">9th</button>
+                                    <button type="button" class="class-chip" data-value="10">10th</button>
+                                </div>
                                 <div class="form-error" id="error-class">Please select a class</div>
                             </div>
 
                             <div class="form-group" style="margin-top: 1.5rem;">
-                                <label for="phone" style="color:var(--text-white); text-align: left; display: block;">Phone Number <span class="required">*</span></label>
+                                <label for="phone" style="color:var(--text-white); text-align: left; display: block; margin-bottom: 0.5rem;">Phone Number <span class="required">*</span></label>
                                 <div class="phone-group">
                                     <span class="phone-prefix" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; display: flex; align-items: center; justify-content: center; width: 60px;">+91</span>
                                     <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; font-size: 1.1rem;">
@@ -230,6 +230,7 @@ try {
                             </div>
 
                             <!-- Hidden fields -->
+                            <input type="hidden" id="student_class" name="student_class" value="">
                             <input type="hidden" id="student_name" name="student_name" value="">
                             <input type="hidden" id="email" name="email" value="">
                             <input type="hidden" id="city" name="city" value="">
@@ -238,9 +239,13 @@ try {
                             <input type="hidden" id="utm_campaign" name="utm_campaign">
                             <input type="hidden" id="utm_content" name="utm_content">
 
-                            <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%; margin-top: 1.5rem; height: 55px; font-size: 1.2rem;">
+                            <p style="color:var(--text-light); text-align:left; font-size:0.85rem; margin-top: 1rem;">
+                                Course Material will be shared via WhatsApp on this Mobile Number
+                            </p>
+
+                            <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%; margin-top: 1rem; height: 55px; font-size: 1.2rem;">
                                 <span class="btn-text">
-                                    Pay ₹19 & Start Learning
+                                    Enroll Now for ₹19
                                 </span>
                                 <span class="spinner"></span>
                             </button>
@@ -512,35 +517,6 @@ try {
         </div>
     </section>
 
-    <!-- ==================== HOW IT WORKS ==================== -->
-    <section class="section section-white" id="how-it-works">
-        <div class="container text-center">
-            <span class="section-badge" style="display:inline-flex;align-items:center;gap:6px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                Simple Process
-            </span>
-            <h2 class="section-title">How It Works</h2>
-            <p class="section-subtitle">Start your AARAMBH journey in just 3 simple steps.</p>
-
-            <div class="steps-container">
-                <div class="step-card reveal">
-                    <div class="step-number">1</div>
-                    <h3>Register & Pay ₹19</h3>
-                    <p>Fill in your details and make a quick ₹19 payment. It takes less than 2 minutes!</p>
-                </div>
-                <div class="step-card reveal">
-                    <div class="step-number">2</div>
-                    <h3>Get Your Schedule</h3>
-                    <p>Receive your personalized class schedule via email and WhatsApp. Our mentor will call you!</p>
-                </div>
-                <div class="step-card reveal">
-                    <div class="step-number">3</div>
-                    <h3>Start Learning!</h3>
-                    <p>Join live interactive classes for 6 days. Experience the magic of HeyyGuru's teaching firsthand.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- ==================== ENROLLMENT TICKER ==================== -->
     <div class="enrollment-ticker">
@@ -903,7 +879,6 @@ try {
                     <ul class="footer-links">
                         <li><a href="#features">Features</a></li>
                         <li><a href="#subjects">Subjects</a></li>
-                        <li><a href="#how-it-works">How It Works</a></li>
                         <li><a href="#testimonials">Testimonials</a></li>
                         <li><a href="#pricing">Pricing</a></li>
                         <li><a href="#faq">FAQ</a></li>
