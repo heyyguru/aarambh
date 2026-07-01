@@ -2204,9 +2204,10 @@ select.form-control {
 
 /* Chip styling for Class Selection */
 .class-chip {
+    font-family: 'Inter', sans-serif;
     background: #ffffff;
-    border: 2px solid #f1f5f9;
-    color: #475569;
+    border: 2px solid #e2e8f0;
+    color: #1e293b;
     padding: 0;
     height: 48px;
     display: flex;
@@ -2218,6 +2219,8 @@ select.form-control {
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    -webkit-appearance: none;
+    appearance: none;
 }
 .class-chip:hover {
     background: #f8fafc;
