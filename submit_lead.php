@@ -18,8 +18,8 @@ if (!RateLimiter::checkLimit('lead_creation', 5, 3600)) {
 }
 
 // Get & sanitize input
-$name = InputValidator::validateName($_POST['student_name'] ?? '');
-$email = InputValidator::validateEmail($_POST['email'] ?? '');
+$name = InputValidator::validateName($_POST['student_name'] ?? '') ?: 'Student';
+$email = InputValidator::validateEmail($_POST['email'] ?? '') ?: 'noemail@example.com';
 $phone = InputValidator::validatePhone($_POST['phone'] ?? '');
 $studentClass = InputValidator::validateAlphaNumSpace($_POST['student_class'] ?? '', 50);
 $city = InputValidator::validateAlphaNumSpace($_POST['city'] ?? '', 100);
@@ -28,16 +28,16 @@ $utmMedium = InputValidator::validateAlphaNumSpace($_POST['utm_medium'] ?? '', 1
 $utmCampaign = InputValidator::validateAlphaNumSpace($_POST['utm_campaign'] ?? '', 100);
 $utmContent = InputValidator::validateAlphaNumSpace($_POST['utm_content'] ?? '', 100);
 
-if (!$name || !$email || !$phone || !$studentClass) {
-    jsonResponse(['success' => false, 'message' => 'Invalid or missing required fields. Please ensure your name only contains letters and your phone is 10 digits.'], 400);
+if (!$phone || !$studentClass) {
+    jsonResponse(['success' => false, 'message' => 'Invalid or missing required fields. Please ensure you provide a valid 10-digit phone number.'], 400);
 }
 
 try {
     $db = getDB();
 
-    // Check if phone or email already registered
-    $stmt = $db->prepare("SELECT id, status FROM students WHERE phone = ? OR email = ?");
-    $stmt->execute([$phone, $email]);
+    // Check if phone already registered
+    $stmt = $db->prepare("SELECT id, status FROM students WHERE phone = ?");
+    $stmt->execute([$phone]);
     $existing = $stmt->fetch();
 
     if ($existing) {

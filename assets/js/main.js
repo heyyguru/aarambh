@@ -327,20 +327,13 @@
 
         // Name
         const name = $('#student_name');
-        if (!name.value.trim() || name.value.trim().length < 2) {
-            showFieldError('name', 'Please enter student\'s name');
-            isValid = false;
-        } else {
+        if (name) {
             clearFieldError('name');
         }
 
         // Email
         const email = $('#email');
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
-            showFieldError('email', 'Please enter a valid email address');
-            isValid = false;
-        } else {
+        if (email) {
             clearFieldError('email');
         }
 

@@ -193,15 +193,12 @@ try {
                     <span class="price-tag" style="background: rgba(255, 60, 172, 0.15); color: #FF3CAC;">98% OFF</span>
                 </div>
 
-                <div class="hero-cta-group">
+                <div class="hero-cta-group" style="display:none;">
                     <a href="#enroll" class="btn btn-cta btn-lg" id="hero-cta">
                         <span class="btn-text">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:5px;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                             Start AARAMBH Journey
                         </span>
-                    </a>
-                    <a href="#features" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;">
-                        Learn More ↓
                     </a>
                 </div>
 
@@ -219,68 +216,66 @@ try {
             </div>
 
             <div class="hero-visual">
-                <div class="hero-visual-card">
-                    <div class="hero-visual-inner">
-                        <h3 style="color:var(--text-white);margin-bottom:1rem;font-size:1.3rem; display:flex; align-items:center; gap:0.5rem; justify-content:center;">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-light);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                            What's Included — All for ₹19
-                        </h3>
-                        <div class="hero-subject-grid">
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Maths</span>
+                <div class="hero-visual-card" style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
+                    <img src="assets/images/teacher_ai.png" alt="Live Online Classes" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; max-height: 250px;">
+                    
+                    <h3 style="color:var(--text-white);margin-bottom:1.5rem;font-size:1.3rem; text-align:center;">
+                        Join AARAMBH at just ₹19
+                    </h3>
+                    
+                    <div class="form-container" id="enrollment-form-container" style="background: transparent; box-shadow: none; padding: 0;">
+                        <form id="enrollmentForm" novalidate>
+                            <div class="form-group">
+                                <label for="student_class" style="color:var(--text-white); text-align: left; display: block;">Select Class <span class="required">*</span></label>
+                                <select id="student_class" name="student_class" class="form-control" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                                    <option value="" style="color: black;">Select Class</option>
+                                    <option value="1" style="color: black;">Class 1</option>
+                                    <option value="2" style="color: black;">Class 2</option>
+                                    <option value="3" style="color: black;">Class 3</option>
+                                    <option value="4" style="color: black;">Class 4</option>
+                                    <option value="5" style="color: black;">Class 5</option>
+                                    <option value="6" style="color: black;">Class 6</option>
+                                    <option value="7" style="color: black;">Class 7</option>
+                                    <option value="8" style="color: black;">Class 8</option>
+                                    <option value="9" style="color: black;">Class 9</option>
+                                    <option value="10" style="color: black;">Class 10</option>
+                                </select>
+                                <div class="form-error" id="error-class">Please select a class</div>
                             </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>English Grammar</span>
+
+                            <div class="form-group">
+                                <label for="phone" style="color:var(--text-white); text-align: left; display: block;">Phone Number <span class="required">*</span></label>
+                                <div class="phone-group">
+                                    <span class="phone-prefix" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">+91</span>
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                                </div>
+                                <div class="form-error" id="error-phone">Please enter a valid 10-digit mobile number</div>
                             </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Science</span>
+
+                            <!-- Hidden fields -->
+                            <input type="hidden" id="student_name" name="student_name" value="">
+                            <input type="hidden" id="email" name="email" value="">
+                            <input type="hidden" id="city" name="city" value="">
+                            <input type="hidden" id="utm_source" name="utm_source">
+                            <input type="hidden" id="utm_medium" name="utm_medium">
+                            <input type="hidden" id="utm_campaign" name="utm_campaign">
+                            <input type="hidden" id="utm_content" name="utm_content">
+
+                            <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%;">
+                                <span class="btn-text">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:5px;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    Pay ₹19 & Start Learning
+                                </span>
+                                <span class="spinner"></span>
+                            </button>
+
+                            <div class="form-trust" style="margin-top: 1rem;">
+                                <span class="lock-icon" style="display:inline-flex;align-items:center;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                </span>
+                                <span style="color:var(--text-light);">Secure payment via Razorpay</span>
                             </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Social Science</span>
-                            </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Vedic Maths</span>
-                            </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Public Speaking</span>
-                            </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Learn India</span>
-                            </div>
-                            <div class="hero-subject-item">
-                                <span class="check-icon">✓</span>
-                                <span>Live Skills</span>
-                            </div>
-                        </div>
-                        <div class="hero-features-mini">
-                            <div class="hero-feature-mini">
-                                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
-                                <span class="label">1 Week</span>
-                                <span class="sublabel">Full Experience</span>
-                            </div>
-                            <div class="hero-feature-mini">
-                                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></span>
-                                <span class="label">Risk Free</span>
-                                <span class="sublabel">100% Guaranteed</span>
-                            </div>
-                            <div class="hero-feature-mini">
-                                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg></span>
-                                <span class="label">Live Classes</span>
-                                <span class="sublabel">Interactive</span>
-                            </div>
-                            <div class="hero-feature-mini">
-                                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
-                                <span class="label">Mentorship</span>
-                                <span class="sublabel">Daily Guidance</span>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
