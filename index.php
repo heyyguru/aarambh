@@ -183,19 +183,19 @@ try {
                     <p style="color: rgba(255,255,255,0.9); font-size: 1rem;">Subjects : Maths, Science, Social Science, English, Skill Development Course</p>
                 </div>
                 
-                <!-- Course Highlights Redesigned -->
+                <!-- Course Highlights Redesigned Awesome Marketing Style -->
                 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 83, 5, 0.1); border: 1px solid rgba(255, 83, 5, 0.2); padding: 10px 16px; border-radius: 50px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5305" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">Upcoming Monday</span>
+                    <div style="display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #FF5305 0%, #FF8A00 100%); padding: 10px 18px; border-radius: 50px; box-shadow: 0 4px 15px rgba(255,83,5,0.4);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span style="color: #fff; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;">Batch Starts: Upcoming Monday</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(0, 200, 81, 0.1); border: 1px solid rgba(0, 200, 81, 0.2); padding: 10px 16px; border-radius: 50px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">6 Days, 6 Live Classes</span>
+                    <div style="display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #00C851 0%, #007E33 100%); padding: 10px 18px; border-radius: 50px; box-shadow: 0 4px 15px rgba(0,200,81,0.4);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span style="color: #fff; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;">6 Days Live Classes</span>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(107, 179, 246, 0.1); border: 1px solid rgba(107, 179, 246, 0.2); padding: 10px 16px; border-radius: 50px;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6BB3F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">CBSE, ICSE, State Boards</span>
+                    <div style="display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #4285F4 0%, #0d47a1 100%); padding: 10px 18px; border-radius: 50px; box-shadow: 0 4px 15px rgba(66,133,244,0.4);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span style="color: #fff; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px;">Integrated CBSE, ICSE & State</span>
                     </div>
                 </div>
                 
