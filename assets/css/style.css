@@ -2204,9 +2204,9 @@ select.form-control {
 
 /* Chip styling for Class Selection */
 .class-chip {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: white;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    color: #475569;
     padding: 10px 5px;
     border-radius: 8px;
     font-size: 0.95rem;
@@ -2214,15 +2214,18 @@ select.form-control {
     cursor: pointer;
     transition: all 0.2s ease;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 .class-chip:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.08);
 }
 .class-chip.active {
-    background: #FF5305;
+    background: #fff0ec;
     border-color: #FF5305;
-    color: white;
-    box-shadow: 0 4px 10px rgba(255, 83, 5, 0.4);
+    color: #FF5305;
+    box-shadow: 0 4px 10px rgba(255, 83, 5, 0.2);
 }
 

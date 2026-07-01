@@ -185,7 +185,7 @@
     // Countdown Timer (Urgency)
     // ---------------------------------------------------
     function initCountdownTimer() {
-        // Reset every 24 hours from midnight
+        // Reset every 24 hours from midnight (for existing timer if any)
         function getTimeRemaining() {
             const now = new Date();
             const endOfDay = new Date();
@@ -199,6 +199,8 @@
             };
         }
 
+        let formCountdownSeconds = 10 * 60; // 10 minutes
+
         function updateTimer() {
             const time = getTimeRemaining();
             const hours = $('#timer-hours');
@@ -208,6 +210,15 @@
             if (hours) hours.textContent = String(time.hours).padStart(2, '0');
             if (minutes) minutes.textContent = String(time.minutes).padStart(2, '0');
             if (seconds) seconds.textContent = String(time.seconds).padStart(2, '0');
+            
+            // New Form Countdown (10 minutes)
+            const formTimer = $('#countdown-timer');
+            if (formTimer) {
+                if (formCountdownSeconds > 0) formCountdownSeconds--;
+                const m = Math.floor(formCountdownSeconds / 60);
+                const s = formCountdownSeconds % 60;
+                formTimer.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+            }
         }
 
         updateTimer();

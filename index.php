@@ -186,17 +186,21 @@ try {
                     Experience Live Classes, Expert Mentors & more — before you commit.
                 </p>
                 
-                <img src="assets/images/teacher_ai.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <img src="assets/images/teacher_ai_dual.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
             <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
-                <div class="hero-visual-card" style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
+                <div class="timer-banner" style="background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); color: white; text-align: center; padding: 10px; border-radius: 12px 12px 0 0; font-weight: 700; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    Offer Ends In: <span id="countdown-timer">10:00</span>
+                </div>
+                <div class="hero-visual-card" style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0 0 16px 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
                     
                     <h3 style="color:var(--text-white);margin-bottom:0.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
                         Concept Booster Course
                     </h3>
                     <div style="background: rgba(255, 223, 209, 0.2); padding: 8px; border-radius: 8px; text-align: center; color: #FFDFD1; font-size: 0.9rem; margin-bottom: 1.5rem;">
-                        5X Efficient Learning Methods by IITians
+                        5X Efficient Learning Methods
                     </div>
                     
                     <div class="form-container" id="enrollment-form-container" style="background: transparent; box-shadow: none; padding: 0;">
