@@ -2251,3 +2251,9 @@ select.form-control {
         font-size: 0.85rem;
     }
 }
+
+@media (max-width: 991px) {
+    .hide-on-mobile {
+        display: none !important;
+    }
+}

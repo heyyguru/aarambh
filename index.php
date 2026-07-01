@@ -142,9 +142,6 @@ try {
                 <span><span class="logo-text-hey">Heyy</span><span class="logo-text-guru">Guru</span></span>
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="#features">Features</a>
-                <a href="#subjects">Subjects</a>
-                <a href="#testimonials">Results</a>
                 <a href="#faq">FAQ</a>
                 <a href="javascript:void(0)" class="nav-cta" onclick="openEnrollModal()">Enroll Now — ₹19</a>
             </div>
@@ -186,34 +183,26 @@ try {
                     <p style="color: rgba(255,255,255,0.9); font-size: 1rem;">Subjects : Maths, Science, Social Science, English, Skill Development Course</p>
                 </div>
                 
-                <!-- Course Highlights -->
-                <div style="margin-bottom: 1.5rem; text-align: center; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                    <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5305" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-                        <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--text-dark); margin: 0;">Course Highlights</h3>
+                <!-- Course Highlights Redesigned -->
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(255, 83, 5, 0.1); border: 1px solid rgba(255, 83, 5, 0.2); padding: 10px 16px; border-radius: 50px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5305" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">Upcoming Monday</span>
                     </div>
-                    <p style="color: var(--text-light); font-size: 0.95rem; margin-bottom: 1.5rem;">Learn Pro Tips in Our Exclusive Course!</p>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-                        <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
-                            <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Next Batch from</p>
-                            <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">Upcoming Monday</p>
-                        </div>
-                        <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
-                            <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Duration</p>
-                            <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">6 Days, 6 Live Classes</p>
-                        </div>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(0, 200, 81, 0.1); border: 1px solid rgba(0, 200, 81, 0.2); padding: 10px 16px; border-radius: 50px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">6 Days, 6 Live Classes</span>
                     </div>
-                    <div style="background: rgba(255, 83, 5, 0.05); padding: 15px 10px; border-radius: 8px;">
-                        <p style="color: #FF5305; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px;">Curriculum</p>
-                        <p style="color: var(--text-dark); font-weight: 800; font-size: 1rem; margin: 0;">Aligned as per CBSE, ICSE, State Boards</p>
+                    <div style="display: flex; align-items: center; gap: 10px; background: rgba(107, 179, 246, 0.1); border: 1px solid rgba(107, 179, 246, 0.2); padding: 10px 16px; border-radius: 50px;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6BB3F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        <span style="color: #fff; font-weight: 600; font-size: 0.95rem;">CBSE, ICSE, State Boards</span>
                     </div>
                 </div>
                 
                 <img src="assets/images/hero_phone_mockup.jpg" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
-            <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
+            <div class="hero-visual hide-on-mobile" style="position: sticky; top: 100px; align-self: start;">
                 <div class="timer-banner" style="background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%); color: white; text-align: center; padding: 10px; border-radius: 12px 12px 0 0; font-weight: 700; font-size: 1.1rem; display: flex; justify-content: center; align-items: center; gap: 8px;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                     Offer Ends In: <span id="countdown-timer">10:00</span>
@@ -340,14 +329,14 @@ try {
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
                     </div>
                     <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 800;">From Average to Topper</h3>
-                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.6;">Our dual-teacher model ensures no doubt is left unresolved, providing the perfect environment to excel and hit top scores.</p>
+                    <p style="color: #444; font-size: 1rem; line-height: 1.6;">Our dual-teacher model ensures no doubt is left unresolved, providing the perfect environment to excel and hit top scores.</p>
                 </div>
                 <div style="background: white; padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); text-align: center; border-top: 4px solid #00C851; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
                     <div style="width: 56px; height: 56px; border-radius: 16px; background: rgba(0, 200, 81, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; color: #00C851;">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
                     </div>
                     <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 800;">Live Interactive Sessions</h3>
-                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.6;">Say goodbye to boring recorded videos! Engage in real-time with instant feedback and interactive quizzes.</p>
+                    <p style="color: #444; font-size: 1rem; line-height: 1.6;">Say goodbye to boring recorded videos! Engage in real-time with instant feedback and interactive quizzes.</p>
                 </div>
             </div>
         </div>
@@ -995,13 +984,7 @@ try {
             </div>
             <div class="footer-bottom">
                 <p>© <?php echo date('Y'); ?> HeyyGuru. All rights reserved.</p>
-                <div class="payment-icons">
-                    <span>UPI</span>
-                    <span>VISA</span>
-                    <span>Mastercard</span>
-                    <span>RuPay</span>
-                    <span>Net Banking</span>
-                </div>
+
             </div>
         </div>
     </footer>
