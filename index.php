@@ -206,10 +206,10 @@ try {
                     <div class="form-container" id="enrollment-form-container" style="background: transparent; box-shadow: none; padding: 0;">
                         <form id="enrollmentForm" novalidate>
                             <div class="form-group" style="margin-bottom: 1.5rem;">
-                                <label style="color:var(--text-white); text-align: left; display: block; margin-bottom: 0.5rem;">Choose Class to Boost Score (2026-27) 🔥 <span class="required">*</span></label>
+                                <label style="color:var(--text-white); text-align: left; display: flex; align-items: center; gap: 6px; margin-bottom: 0.5rem;">Choose Class to Boost Score (2026-27) <i data-lucide="trending-up" style="width:16px;height:16px;color:#FF5305;"></i> <span class="required">*</span></label>
                                 
                                 <!-- Chips for Class Selection -->
-                                <div class="class-chips-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+                                <div class="class-chips-grid">
                                     <button type="button" class="class-chip" data-value="1">1st</button>
                                     <button type="button" class="class-chip" data-value="2">2nd</button>
                                     <button type="button" class="class-chip" data-value="3">3rd</button>
@@ -254,11 +254,17 @@ try {
                                 <span class="spinner"></span>
                             </button>
 
-                            <div class="form-trust" style="margin-top: 1.5rem; justify-content: center;">
-                                <span class="lock-icon" style="display:inline-flex;align-items:center;">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                                </span>
-                                <span style="color:var(--text-light); font-size: 0.9rem;">100% Secure payment via Razorpay</span>
+                            <div class="form-trust" style="margin-top: 1.5rem; justify-content: center; flex-direction: column; gap: 8px; text-align: center;">
+                                <div style="display:flex; align-items:center; gap: 6px; justify-content: center;">
+                                    <span class="lock-icon" style="display:inline-flex;align-items:center;">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    </span>
+                                    <span style="color:var(--text-light); font-size: 0.9rem;">100% Secure payment via Razorpay</span>
+                                </div>
+                                <div style="display:inline-flex; align-items:center; gap: 6px; justify-content: center; background: rgba(0, 200, 81, 0.15); border: 1px solid rgba(0, 200, 81, 0.3); padding: 6px 12px; border-radius: 20px; margin-top: 4px;">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00C851" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                    <span style="color:#00C851; font-size: 0.85rem; font-weight: 600;">100% Trusted by 2000+ parents and students</span>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -305,13 +311,19 @@ try {
             </p>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; border-top: 4px solid var(--primary-color);">
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-dark); font-weight: 700;">🚀 From Average to Topper</h3>
-                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6;">Our dual-teacher model ensures no doubt is left unresolved, providing the perfect environment to excel and hit top scores.</p>
+                <div style="background: white; padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); text-align: center; border-top: 4px solid var(--primary-color); transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 56px; height: 56px; border-radius: 16px; background: rgba(255, 83, 5, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; color: var(--primary-color);">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 800;">From Average to Topper</h3>
+                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.6;">Our dual-teacher model ensures no doubt is left unresolved, providing the perfect environment to excel and hit top scores.</p>
                 </div>
-                <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: left; border-top: 4px solid var(--primary-color);">
-                    <h3 style="font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-dark); font-weight: 700;">💻 Live Interactive Sessions</h3>
-                    <p style="color: var(--text-light); font-size: 0.95rem; line-height: 1.6;">Say goodbye to boring recorded videos! Engage in real-time with instant feedback and interactive quizzes.</p>
+                <div style="background: white; padding: 2.5rem 2rem; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.06); text-align: center; border-top: 4px solid #00C851; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                    <div style="width: 56px; height: 56px; border-radius: 16px; background: rgba(0, 200, 81, 0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; color: #00C851;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+                    </div>
+                    <h3 style="font-size: 1.3rem; margin-bottom: 1rem; color: var(--text-dark); font-weight: 800;">Live Interactive Sessions</h3>
+                    <p style="color: var(--text-light); font-size: 1rem; line-height: 1.6;">Say goodbye to boring recorded videos! Engage in real-time with instant feedback and interactive quizzes.</p>
                 </div>
             </div>
         </div>

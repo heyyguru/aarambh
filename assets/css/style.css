@@ -2223,9 +2223,24 @@ select.form-control {
     box-shadow: 0 4px 6px rgba(0,0,0,0.08);
 }
 .class-chip.active {
-    background: #fff0ec;
+    background: #FF5305;
     border-color: #FF5305;
-    color: #FF5305;
-    box-shadow: 0 4px 10px rgba(255, 83, 5, 0.2);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(255, 83, 5, 0.3);
 }
 
+.class-chips-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+}
+
+@media (max-width: 480px) {
+    .class-chips-grid {
+        gap: 0.4rem;
+    }
+    .class-chip {
+        padding: 8px 2px;
+        font-size: 0.85rem;
+    }
+}
