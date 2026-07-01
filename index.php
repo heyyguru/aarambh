@@ -538,6 +538,11 @@ try {
             </span>
             <h2 class="section-title">What Parents & Students Say</h2>
             <p class="section-subtitle">Real results from real students. Join thousands of happy learners!</p>
+            
+            <div class="instagram-video-wrapper" style="margin: 2rem auto; max-width: 320px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: white;">
+                <iframe src="https://www.instagram.com/reel/DZCx8wnPvUe/embed" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            </div>
+
 
             <div class="testimonials-slider-wrapper">
                 <div class="testimonials-slider" id="testimonials-slider">
