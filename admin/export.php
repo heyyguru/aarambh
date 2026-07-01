@@ -60,8 +60,8 @@ fputcsv($output, [
 foreach ($students as $s) {
     fputcsv($output, [
         $s['id'],
-        $s['name'],
-        $s['email'],
+        strtolower($s['name']) === 'student' ? '' : $s['name'],
+        strtolower($s['email']) === 'noemail@example.com' ? '' : $s['email'],
         $s['phone'],
         'Class ' . $s['student_class'],
         $s['city'] ?: '-',

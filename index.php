@@ -182,52 +182,29 @@ try {
                     <span class="highlight">Experience 6 Days</span><br>
                     of Smart Learning
                 </h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle" style="margin-bottom: 1.5rem;">
                     India's #1 Smart Learning Platform presents a powerful starter program. 
                     Experience Live Classes, Expert Mentors & more — before you commit.
                 </p>
-
-                <div class="hero-price">
-                    <span class="price-original">₹999</span>
-                    <span class="price-current" style="color: #FF3CAC; text-shadow: 0 4px 15px rgba(255, 60, 172, 0.4);"><span class="rupee">₹</span>19</span>
-                    <span class="price-tag" style="background: rgba(255, 60, 172, 0.15); color: #FF3CAC;">98% OFF</span>
-                </div>
-
-                <div class="hero-cta-group" style="display:none;">
-                    <a href="#enroll" class="btn btn-cta btn-lg" id="hero-cta">
-                        <span class="btn-text">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:5px;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                            Start AARAMBH Journey
-                        </span>
-                    </a>
-                </div>
-
-                <div class="hero-trust" style="display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;">
-                    <div class="live-counter-avatars">
-                        <div class="avatar">A</div>
-                        <div class="avatar" style="background:linear-gradient(135deg,#FF6B35,#FF3CAC);">R</div>
-                        <div class="avatar" style="background:linear-gradient(135deg,#00C851,#00A844);">S</div>
-                        <div class="avatar more">+</div>
-                    </div>
-                    <span style="color:var(--text-light);font-size:0.9rem;">
-                        <strong style="color:var(--success);" id="hero-count">2,947</strong> students already enrolled
-                    </span>
-                </div>
+                
+                <img src="assets/images/teacher_ai.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
             <div class="hero-visual">
-                <div class="hero-visual-card" style="padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;">
-                    <img src="assets/images/teacher_ai.png" alt="Live Online Classes" style="width: 100%; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; max-height: 250px;">
+                <div class="hero-visual-card" style="padding: 2rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); backdrop-filter: blur(10px);">
                     
-                    <h3 style="color:var(--text-white);margin-bottom:1.5rem;font-size:1.3rem; text-align:center;">
+                    <h3 style="color:var(--text-white);margin-bottom:1.5rem;font-size:1.5rem; text-align:center; font-weight: 700;">
                         Join AARAMBH at just ₹19
                     </h3>
+                    <p style="color:var(--text-light); text-align:center; margin-bottom:1.5rem; font-size:0.95rem;">
+                        Fill details below to book your slot
+                    </p>
                     
                     <div class="form-container" id="enrollment-form-container" style="background: transparent; box-shadow: none; padding: 0;">
                         <form id="enrollmentForm" novalidate>
                             <div class="form-group">
                                 <label for="student_class" style="color:var(--text-white); text-align: left; display: block;">Select Class <span class="required">*</span></label>
-                                <select id="student_class" name="student_class" class="form-control" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                                <select id="student_class" name="student_class" class="form-control" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; font-size: 1.1rem;">
                                     <option value="" style="color: black;">Select Class</option>
                                     <option value="1" style="color: black;">Class 1</option>
                                     <option value="2" style="color: black;">Class 2</option>
@@ -243,11 +220,11 @@ try {
                                 <div class="form-error" id="error-class">Please select a class</div>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="margin-top: 1.5rem;">
                                 <label for="phone" style="color:var(--text-white); text-align: left; display: block;">Phone Number <span class="required">*</span></label>
                                 <div class="phone-group">
-                                    <span class="phone-prefix" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">+91</span>
-                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2);">
+                                    <span class="phone-prefix" style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; display: flex; align-items: center; justify-content: center; width: 60px;">+91</span>
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter 10-digit mobile number" maxlength="10" required style="background: rgba(255,255,255,0.1); color: white; border-color: rgba(255,255,255,0.2); height: 50px; font-size: 1.1rem;">
                                 </div>
                                 <div class="form-error" id="error-phone">Please enter a valid 10-digit mobile number</div>
                             </div>
@@ -261,19 +238,18 @@ try {
                             <input type="hidden" id="utm_campaign" name="utm_campaign">
                             <input type="hidden" id="utm_content" name="utm_content">
 
-                            <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%;">
+                            <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%; margin-top: 1.5rem; height: 55px; font-size: 1.2rem;">
                                 <span class="btn-text">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:5px;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
                                     Pay ₹19 & Start Learning
                                 </span>
                                 <span class="spinner"></span>
                             </button>
 
-                            <div class="form-trust" style="margin-top: 1rem;">
+                            <div class="form-trust" style="margin-top: 1.5rem; justify-content: center;">
                                 <span class="lock-icon" style="display:inline-flex;align-items:center;">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                                 </span>
-                                <span style="color:var(--text-light);">Secure payment via Razorpay</span>
+                                <span style="color:var(--text-light); font-size: 0.9rem;">100% Secure payment via Razorpay</span>
                             </div>
                         </form>
                     </div>

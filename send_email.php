@@ -12,6 +12,10 @@ if (!defined('AARAMBH_INIT')) {
  * Send enrollment confirmation email
  */
 function sendConfirmationEmail($student, $paymentId) {
+    if (strtolower($student['email']) === 'noemail@example.com') {
+        return false; // Skip sending email
+    }
+
     $to = $student['email'];
     $studentName = $student['name'];
     $studentClass = $student['student_class'];

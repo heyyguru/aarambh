@@ -253,13 +253,25 @@ $todayVisitStats = $todayVisitStmt->fetch();
                                 <?php foreach ($students as $s): ?>
                                 <tr>
                                     <td><?php echo $s['id']; ?></td>
-                                    <td><strong><?php echo sanitize($s['name']); ?></strong></td>
+                                    <td>
+                                        <?php if (strtolower($s['name']) === 'student'): ?>
+                                            <span style="color:var(--text-muted); font-style: italic;">Not Provided</span>
+                                        <?php else: ?>
+                                            <strong><?php echo sanitize($s['name']); ?></strong>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <a href="tel:+91<?php echo $s['phone']; ?>" class="phone-link">
                                             <i data-lucide="phone" style="width:14px;height:14px;"></i> <?php echo $s['phone']; ?>
                                         </a>
                                     </td>
-                                    <td><a href="mailto:<?php echo $s['email']; ?>"><?php echo sanitize($s['email']); ?></a></td>
+                                    <td>
+                                        <?php if (strtolower($s['email']) === 'noemail@example.com'): ?>
+                                            <span style="background:var(--bg-light); color:var(--text-muted); padding:2px 6px; border-radius:4px; font-size:0.8rem;">No Email</span>
+                                        <?php else: ?>
+                                            <a href="mailto:<?php echo $s['email']; ?>"><?php echo sanitize($s['email']); ?></a>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?php echo sanitize($s['student_class']); ?></td>
                                     <td><?php echo sanitize($s['city'] ?: '-'); ?></td>
                                     <td>
