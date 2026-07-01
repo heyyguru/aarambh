@@ -186,7 +186,7 @@ try {
                     Experience Live Classes, Expert Mentors & more — before you commit.
                 </p>
                 
-                <img src="assets/images/teacher_ai_dual.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                <img src="assets/images/science_class_screen.png" alt="Live Online Classes" style="width: 100%; max-width: 500px; border-radius: 12px; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             </div>
 
             <div class="hero-visual" style="position: sticky; top: 100px; align-self: start;">
@@ -209,7 +209,7 @@ try {
                                 <label style="color:var(--text-white); text-align: left; display: block; margin-bottom: 0.5rem;">Choose Class to Boost Score (2026-27) 🔥 <span class="required">*</span></label>
                                 
                                 <!-- Chips for Class Selection -->
-                                <div class="class-chips-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;">
+                                <div class="class-chips-grid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
                                     <button type="button" class="class-chip" data-value="1">1st</button>
                                     <button type="button" class="class-chip" data-value="2">2nd</button>
                                     <button type="button" class="class-chip" data-value="3">3rd</button>

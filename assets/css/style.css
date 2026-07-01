@@ -2200,7 +2200,7 @@ select.form-control {
         color: black;
     }
 }
-.logo-cloud, #features, #subjects, #how-it-works, #testimonials, #pricing, #faq, #enroll { display: none !important; }
+.logo-cloud, #features, #subjects, #how-it-works, #pricing, #faq, #enroll { display: none !important; }
 
 /* Chip styling for Class Selection */
 .class-chip {

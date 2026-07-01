@@ -278,15 +278,49 @@
         // Chip selection logic
         const chips = document.querySelectorAll('.class-chip');
         const hiddenInput = $('#student_class');
+        const phoneInput = $('#phone');
+        
+        function trackVisitor() {
+            if (!hiddenInput || !phoneInput) return;
+            const phoneVal = phoneInput.value.trim();
+            const classVal = hiddenInput.value;
+            const phoneRegex = /^[6-9]\d{9}$/;
+            
+            // If we have a valid phone and a class selected, track silently
+            if (classVal && phoneRegex.test(phoneVal)) {
+                fetch('track_visitor.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ phone: phoneVal, student_class: classVal })
+                }).catch(err => console.error('Tracking failed', err));
+            }
+        }
         
         chips.forEach(chip => {
             chip.addEventListener('click', () => {
                 chips.forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
-                if (hiddenInput) hiddenInput.value = chip.dataset.value;
-                clearFieldError('class');
+                if (hiddenInput) {
+                    hiddenInput.value = chip.dataset.value;
+                    clearFieldError('class');
+                    
+                    // Auto-focus phone input and attempt to track
+                    if (phoneInput) {
+                        phoneInput.focus();
+                        trackVisitor();
+                    }
+                }
             });
         });
+        
+        // Track when phone is typed (if class is already selected)
+        if (phoneInput) {
+            phoneInput.addEventListener('keyup', () => {
+                if (phoneInput.value.trim().length === 10) {
+                    trackVisitor();
+                }
+            });
+        }
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
