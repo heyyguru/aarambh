@@ -244,7 +244,7 @@ try {
                             <input type="hidden" id="utm_content" name="utm_content">
 
                             <p style="color:var(--text-light); text-align:left; font-size:0.85rem; margin-top: 1rem;">
-                                Course Material will be shared via WhatsApp on this Mobile Number
+                                Reserve your seat right now!
                             </p>
 
                             <button type="submit" class="btn btn-cta btn-lg form-submit-btn" id="submitBtn" style="width: 100%; margin-top: 1rem; height: 55px; font-size: 1.2rem;">
